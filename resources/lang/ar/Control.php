@@ -1,0 +1,383 @@
+<?php
+
+return [
+
+
+    'status'=>'حالة النظام والسيرفر',
+    'Loadavrig'=>'الضغط الحالي على السيرفر(15Min)  ',
+    'Title' => 'سوبر بوت',
+    'Nameincontrolone' => 'IT',
+    'Nameincontroltow' => 'Soft ',
+    'Shortcutname' => 'SB',
+    'Logout' => 'خروج',
+    'Dashboard' => 'لوحة التحكم',
+    'MAIN' => 'قائمة',
+    'Home' => ' الرئيسي ',
+    'Bot' => ' بوتات ',
+       'free_try1' => ' تجربة مجانية 1 ',
+       'Tester' => 'حسابات تجريبة',
+       'paid_1' => 'مدفوع 1', //كاتبة
+       'paid_2' => 'مدفوع 2',//كاتبة
+    'ADMIN' => 'ادمين',
+    'name' => 'الاسم',
+    'Email' => 'الايميل',
+    'Setting' => 'الاعدادات',
+    'Plan' => 'الباقة',
+    'suppress' => 'ايقاف مؤقت',
+    'login' => 'تسجيل',
+    'save' => 'حفظ',
+    'Close' => 'اغلاق',
+    'MarketBuyResourserIrontTitel'=> 'شراء الموارد',
+    'name'=> 'الاسم',
+    'MaxPorint'=> 'قيمة الشراء',
+    'wood'=> 'الخشب',
+    'stone'=> 'الطمي',
+    'iron'=> 'الحديد',
+    'farm'=>'المزارع',
+    'storage'=>'المخازن',
+    'hide'=>'المخابئ',
+    'wall'=>'الحائط',
+    'statue'=>'النصب التذكاري',
+    'market'=>'السوق',
+    'place'=>'نقطة التجمع',
+    'smith'=>'الحداد',
+    'garage'=>'الورشة',
+    'barracks'=>'الثكنات',
+    'stable'=>'الاصطبل',
+    'main'=>'المبنى الرئيسي',
+    'AVRMAX'=> 'الضغط كل...',
+    'Event'=> 'جاري العمل به',
+    'Building'=>'المباني',
+    'snob'=>'الاكاديمية',
+
+    'MarketBuyResourserIron'=> 'شراء الحديد',
+    'MarketBuyResourserWoodtTitel'=> 'هنا اضف قيمة الشراء للخشب',
+   'MarketBuyResourserstoneTitel'=> 'هنا اضف قيمة الشراء للطمي',
+    'MarketBuyResourser'=> 'شراء الموارد',
+    'Settings'=> 'اعدادات',
+    'MarketBuyResourserporintTitel'=> 'هنا تحدد قيمة الشراء من السوق',
+    'MarketBuyResourser'=>'شراء الموارد من السوق',
+    'MarketBuyResourserWoodtTitel'=> 'هنا اشف قيمة الشراء للخشب',
+    'OnOff'=>'تشغيل',
+    'SettingsUser'=>'اعدادات الحساب',
+    'Admin'=>'ادمين',
+    'Add User'=>'اضافة مستخدم جديد',
+    'Show User'=>'جميع المستخدمين',
+    'SendMess'=>'ارسل رسالة',
+    'Downloadlink'=>'حمل برنامج متصفح',
+    'DownloadlinkLite'=>'حمل برنامج متصفح الخفيف',
+    'download'=> "تحميل البرامج",
+
+
+
+
+
+    'Director'=>'مدير المهام',
+    'Bots'=>'البوتات',
+    'Bottheftassistant'=>'مساعد النهب',
+    'BildingHelper'=>'مدير المباني',
+    'Autotechup'=>'تطوير الوحدات',
+    'coinMaker'=>'صقل العملات',
+    'SendResSnob'=>'سحب موارد الصقل',
+    'ResourceBalancer'=>'موازنة الموارد',
+    'MakeNewNabil'=>'تدريب النبلاء',
+    'scavenge'=>'الاغارات',
+    'MakeArrmy'=>'تدريب الوحدات',
+    'SendResourceViliges'=>'ارسال الموارد للاعبين',
+    'SetExceptionVillages'=>'ايقاف البوتات عن قرية معينة',
+
+    'AdminProxy'=>'اضافة ال بروكسي',
+    'InputPramter'=>'ادخل الخصائص',
+
+    'spears'=>'مقاتل الرمح',
+    'swords'=>'مقاتل السيف',
+    'axes'=>'مقاتل الفاس',
+    'archers'=>'مقاتل القوس',
+    'lights'=>'الفارس الخفيف',
+    'spys'=>'الكشافة',
+    'rams'=>'المحطمات',
+    'catapults'=>'المقلاع',
+    'MinFromAll'=>'اقل قيمة يتم حفظها بالمخازن',
+    'marchers'=>'التجار',
+    'heavys'=>'الفارس الثقيل',
+    'knighs'=>'قائد الفرسان',
+    'village'=>'القرية',
+    'Count'=>'العدد',
+
+    'Add Vili'=>'اضف القرية',
+    'BotName'=>'اسم البوت',
+    'DescrptionDilogSecsses'=>'الاعدات تم حفظها بنجاح',
+    'ErrorContions'=>'حصل خطأ (رجاءا اعد تحميل الصفحة)',
+    'ToLevel'=>"<i class='fa fa-angle-up' aria-hidden='true'>مستوى </i>   ",
+
+    'level'=>'مستوى',
+    'AddToTab'=>'اضافة الى الجدول',
+    'Bliding'=>'المباني',
+    'Time'=>'الوقت',
+
+    //بوت النهب
+
+    'lightTitle'=>'هنا تضيف العدد الذي يجب ان يتواجد بالقرية حتى يبدا النهب',
+    'TimeMaxtitle'=>'ادخل هنا قيمة التكرار كم من الوقت يجب ان يمضي قبل ان تعيد الهجمة على نفس القرية',
+    'ResressMinCtitle'=>'ادخل هنا اقل قيمة من الموارد يجب ان تكون متواجدة بالبربر حتى يرسل النهب بحرف ال C',
+    'ResressMAXCtitle'=>'ادخل هنا اعلى قيمة يجب ان تتواجد بالقرية البربرية حتى يرسل النهب حرف ال C',
+    'WallMAXtitle'=>'ادخل هنا اعلى قيمة من الحائط الذي تريد ارسال النهب عليه',
+    'stepMAXtitle'=>'ابعد مسافة تريد ارسال النهب عليها ك حقول للمعلومة كل 1 حقل يساوي 10 دقائق بالفارس الخفيف بسرعة عالم 1',
+    'stepMAX'=>'الحقول',
+    'TimeMintitle'=>'ادخل هنا كم يجب انا يمضي من الوقت على تقرير الكشافة حتى لا يرسل بارسال الهجمات على القرية لو مضى على فترة التقرير مدة طويلة',
+    'Atitle'=>'تشغيل حرف ال A',
+    'Btitle'=>'تشغيل حرف ال B',
+    'Ctitle'=>'تشغيل حرف ال C',
+    'resources'=>'الموارد',
+
+    ////
+    //بوت العملات الذهبية
+    'Maxcointitle'=>'هنا تقوم بادخال عدد العملات الذهبية التي تريد ان تتواجد بكل قرية اي عملة اضافية فوق الرقم سوف يتم صقلها',
+    'Maxcoin'=>'اعلى حد من الصقلات',
+
+    ////
+    //بوت موازنة الموارد
+    'Unlimited'=>'غير محدودة المسافة',
+    '< 25 Fields'=>'< 25 حقل',
+    '< 50 Fields'=>'< 50 حقل',
+    '< 100 Fields'=>'< 100 حقل',
+    //بوت انشاء نبيل
+    'NabilCountTitle'=>'هنا تقوم بادخال عدد النبلاء المراد تدريبهم',
+    'NabilCount'=>'عدد النبلاء',
+    //
+    //بوت الاغارات
+    'Settings defense'=>'الرحالة قرى',
+    'Settings ATTACK'=>'الرحالة قرى هجومية',
+    'Settings defense 2'=>'النقل المتواضع',
+    'Settings ATTACK 2'=>'النقل المتواضع قرى هجومية',
+    'Settings defense 3'=>'التجميع الذكي',
+    'Settings ATTACK 3'=>'التجميع الذكي قرى هجومية',
+    'Settings defense 4'=>'الغارات الكبيرة',
+    'Settings ATTACK 4'=>'الغارات الكبيرة قرى هجومية',
+
+
+
+    'spearscavengetTitle'=>'هنا اضف عدد الجنود لارسالهم',
+    'swordscavengetTitle'=>'هنا اضف عدد الجنود لارسالهم',
+    'axescavengetTitle'=>'هنا اضف عدد الجنود لارسالهم',
+    'archerscavengetTitle'=>'هنا اضف عدد الجنود لارسالهم',
+    'lightscavengetTitle'=>'هنا اضف عدد الجنود لارسالهم',
+    'marcherscavengetTitle'=>'هنا اضف عدد الجنود لارسالهم',
+    'heavyscavengetTitle'=>'هنا اضف عدد الجنود لارسالهم',
+    'knighscavengetTitle'=>'هنا اضف عدد الجنود لارسالهم',
+
+
+    ///////////////////////
+    //بوت بناء ارسال موارد لقرية اخرى
+  'maxstepsendtoviligResTitle'=>'ادخل المسافة القصوى لسفر التجار',
+    'maxstepsendtoviligRes'=>'الحقول',
+    'ViligXYTitle'=>'احداثيات القرية المراد ارسال الموارد لها',
+    'ViligXY'=>'احداثيات القرية',
+    'MaxResSend'=>'الموارد',
+    'MaxResSendTitle'=>'ادخل مجموع الموارد التي تريد ارسالها ',
+    'ViligXY'=>'القرية',
+    'maxstepsendtoviligRes'=>'مسافة السفر بالحقول',
+    'MaxResSend'=>'الموارد التي يتم ارسالها',
+    //اكتشاف البربر الجديد
+    'NewBarbarAttack'=>'استكشاف البربر',
+    'stepMAXB'=>'الخطوات',
+    'stepMAXtitleB'=>'هنا تضع مسافة الحقول التي تريد استكشاف البربر فيها قطر دائري على جميع القرى',
+
+    //تحطيم الحوائط
+    'smashingwalls'=>'تحطيم حوائط البربر',
+    'stepMAXS'=>'الخطوات',
+    'stepMAXtitleS'=>'هنا ضع مسافة التحرك للمحطمات لاجل تحطيم الحوائط',
+
+    //بناء القوات
+
+    'SettingsNonPro'=>'تدريب بدون عضوية خاصة',
+    'spearMakeArrmyTitle'=>'هنا اضف عدد الجنود لتدريبهم',
+    'swordMakeArrmyTitle'=>'هنا اضف عدد الجنود لتدريبهم',
+    'axeMakeArrmyTitle'=>'هنا اضف عدد الجنود لتدريبهم',
+    'archerMakeArrmyTitle'=>'هنا اضف عدد الجنود لتدريبهم',
+    'lightMakeArrmyTitle'=>'هنا اضف عدد الجنود لتدريبهم',
+    'spyMakeArrmyTitle'=>'هنا اضف عدد الجنود لتدريبهم',
+    'marcherMakeArrmyTitle'=>'هنا اضف عدد الجنود لتدريبهم',
+    'heavyMakeArrmyTitle'=>'هنا اضف عدد الجنود لتدريبهم',
+    'ramMakeArrmyTitle'=>'هنا اضف عدد الجنود لتدريبهم',
+    'catapultMakeArrmyTitle'=>'هنا اضف عدد الجنود لتدريبهم',
+    'MinFromAllMakeArrmyTitle'=>'هنا تحدد القيمة من المخازن التي تريد ان تحافظ عليها',
+    'SettingsPro'=>'تدريب بالعضوية الخاصة',
+	'SelectGrupeTitel'=>'اختر المجموعات التي تريد تدريب الوحدات بها ',
+
+
+
+
+
+    // بوت الهجمات الوهمية
+
+    'SelectGrupeTitel'=>'اختر المجموعة',
+    'FakeAttack'=>'بوت الوهميات',
+    'spyFakeAttack'=>'عدد الكشافة',
+    'Calc'=>'اردح العملية الحسابية',
+    'Add'=>'اضافة',
+    'viliges'=>'القرية',
+    'SpyCount'=>'عدد الكشافة',
+    'ViligesFrom'=>'من القرية',
+    'ViligesTo'=>'الى الهدف',
+    'TimeAttack'=>'وقت الارسال',
+
+    'TimeArrive'=>'وقت الوصول',
+    'edit'=>'تعديل',
+    'Events'=>'الحدث',
+    'data'=>'معلومات',
+    'CountAttacK'=>'عدد الهجمات',
+    'viligeXY'=>'احداثية القرية',
+    'textviligeAddF'=>'الهدف هنا',
+
+    'Error'=>'خطا',
+    'select_one_vilige'=>'اختر قرية واحدة',
+    'CountAttackAdd'=> 'عدد الهجمات',
+    'EnterDateAndTime'=>'الوقت والتاريخ',
+    'PleaseEnterXYorSyleGood'=>'خطا في احداثيات القرية',
+    'CAN_NOT_ATTAK_CHANGE_TIME'=>'لا يتوافق الوقت عدل وقت الوصول',
+    'ok'=>'نعم&تم',
+    'ErrorContions_Error'=>'خطا في الاتصال',
+    'settings'=>'الاعدادات',
+    'Edit'=>'تعديل',
+    'NoAnyPostionX_YFinded'=>'لا يوجد اي احداثيات واضحة',
+    'EnterViligesAttakPlan'=>'ادخل مخطط الهجوم',
+    'SelectOneGroup'=>'اختر مجموعة',
+    'ERROR_GETVILIGE_GROUNP'=>'لا توجد مجموعة',
+    'NO_ANY_VIL_IN_THIS_GROUP'=>'لا يوجد قرى في المجموعة',
+    "Vilige"=>"قرية",
+    "CountAttackSendAttakByTime"=>"عدد الهجمات",
+    "maxworldcanrunis"=>"اكثر عدد يمكن تشغيلة هو  " ,
+    "Months"=>"شهر",
+    "Days"=>"يوم",
+    "your_subscrib_end_on"=>"ينتهي اشتراكك في",
+    "YouHave"=>"لديك",
+    "subscribe_info"=>"معلومات الاشتراك",
+    "your_subscribe_is_ended"=>"انتهى الاشتراك , قم بالاتصال بمدير الموقع لتجديد الاشتراك",
+
+    "Add_Your_Username"=>"اضف اسم المستخدم",
+    "username"=>"اسم السمتخدم ",
+    "password"=>"كلمة المرور",
+    "SendData"=>"تسجيل الدخول",
+    "UpDateWorld"=>"بحث عن عوالم جديدة",
+    "Iperror"=>"هناك خطأ في اي بي",
+    "NoIpControll"=>"انت ليس لديك اي بي في الحساب , اتصل بالادمن من فضلك",
+    "LoginGame"=>"دخول الى لعبة ",
+    "UserNameOrPasswordwrong"=>"هناك خطأ في كلمة المرور او اسم السمتخدم",
+    "NoAnyIPadded"=>"انت لا تملك اي بي في حسابك , اتصل بالادمن من فضلك*",
+    "Errorloginorsomewhere"=>"هناك خطأ عام ,قم بتحديث الصفحة وحاول مجداً",
+    "CAN_NOT_CHANGE_USERNAME_PLEASE_TELL_ADMIN"=>"انت لا تستطيع تغير اسم المستخدم الخاص بك <br>,اذا كان نفس الحساب وغيرت اسمك في لعبة اتصل بالادمن من فضل",
+    "update_world_DescrptionDilogSecsses"=>"تم اضافة العاولم جديد اذا كان هناك",
+    "update_world_UpDateWorld"=>"تحديث العاولم",
+
+    "troops"=>"القوات",
+    "Troops"=>"القوات",
+    'spearSendAttakByTimeTitle'=>'هنا اضف عدد الجنود ',
+    'swordSendAttakByTimeTitle'=>'هنا اضف عدد الجنود ',
+    'axeSendAttakByTimeTitle'=>'هنا اضف عدد الجنود ',
+    'archerSendAttakByTimeTitle'=>'هنا اضف عدد الجنود ',
+    'lightSendAttakByTimeTitle'=>'هنا اضف عدد الجنود ',
+    'spySendAttakByTimeTitle'=>'هنا اضف عدد الجنود ',
+    'marcherSendAttakByTimeTitle'=>'هنا اضف عدد الجنود ',
+    'heavySendAttakByTimeTitle'=>'هنا اضف عدد الجنود ',
+    'ramSendAttakByTimeTitle'=>'هنا اضف عدد الجنود ',
+    'catapultSendAttakByTimeTitle'=>'هنا اضف عدد الجنود ',
+
+    'SnobSendAttakByTimeTitle'=>'هنا اضف عدد النبيل في اول هجمة فقط',
+    'SupportFromTroSendAttakByTimeTitle'=>'علم سرعة الدعم في القرية المراد دعمها',
+    'SupportFromTroSendAttakByTime'=>'علم سرعة الدعم في القرية المراد دعمها',
+    'SupportFromPlayerSendAttakByTimeTitle'=>'علم سرعة الدعم في القبلية',
+    'SupportFromPlayerSendAttakByTime'=>'علم سرعة الدعم في القبلية',
+    'frommillscanTitle'=>'من  جزاء ثانية',
+    'frommillscan'=>'من اجزء الثانية',
+    'tomillscandTitle'=>'الى اجزء الثانية',
+    'tomillscand'=>'الى اجزء الثانية',
+    'send_sniper_support'=>'بوت  قنص او دعم دقيق',
+    'send_snob_attack'=>'بوت ارسال النبلاء دقيق',
+    'send_ram_cleaning_attack'=>'بوت المحطمات دقيق',
+    'send_anti_sniper_attack'=>'بوت كسر قنص دقيق',
+    'ThifHelperPlayers'=>'بوت نهب لاعبين',
+
+
+    'spearThifHelperPlayersTitle'=>'هنا اضف عدد الجنود ',
+    'swordThifHelperPlayersTitle'=>'هنا اضف عدد الجنود ',
+    'axeThifHelperPlayersTitle'=>'هنا اضف عدد الجنود ',
+    'archerThifHelperPlayersTitle'=>'هنا اضف عدد الجنود ',
+    'lightThifHelperPlayersTitle'=>'هنا اضف عدد الجنود ',
+    'spyThifHelperPlayersTitle'=>'هنا اضف عدد الجنود ',
+    'marcherThifHelperPlayersTitle'=>'هنا اضف عدد الجنود ',
+    'heavyThifHelperPlayersTitle'=>'هنا اضف عدد الجنود ',
+    'ramThifHelperPlayersTitle'=>'هنا اضف عدد الجنود ',
+    'catapultThifHelperPlayersTitle'=>'هنا اضف عدد الجنود ',
+    'PlayerMaxPorintsThifHelperPlayersTitle'=>'اقصى نقاط لاعب المرد نهبه',
+    'maxstepThifHelperPlayersTitle'=>'اقصى بعد عن قريتك بالخطوة',
+
+    'The theft Package'=>'حزمة السرقة',
+    'The biggest theft'=>'السارق الكبير',
+    'The war lord 2'=>'سيد الحرب',
+    'The War lord 1'=>'سيد الحرب 1',
+    'Dictator'=>'الحاكم المطلق',
+
+    ////////////////////
+    'addsubscribe'=>'اضافة وقت او تعديل الاشتراك',
+    'plan'=>'اختار الخطة',
+    '_Credit_or_debit_card_googlepay_apply_pay'=>'يمكن الدفع بالبطاقة او google pay , apple pay <br>
+    في حال تريقة الى خطة جديدة سيتم تحويل الوقت المتبقي الى الباقة الجديدة بحساب فرق السعر',
+
+    'AdminAccount'=>'مدير الحسابات',
+    'AddAndSaveNewNames'	=>'اضافة اسماء جديدة',
+    'ProxyHaveBeenDeleta'	=>'البروكسيات للحذف',
+    'FakeAcoounts'=>'الحسابات الوهمية',
+    'FakeAddEmails'		=>'اضافة ايميلات الوهمية',
+    'FakeAddNewTask'	=>'اضافة مهمة للحسابات الوهمية',
+    'MarketSellRes'=>'بوت بيع الموارد',
+    'Empty'=>'فارغ',
+    'MarketSellResWoodtTitel'=>'القيمة  الخشب',
+    'MarketSellResstoneTitel'=>'القيمة  الحجر',
+    'MarketSellResIrontTitel'=>'القيمة  الحديد',
+
+    'MaxAvergesell'                    =>'اعلى قيمة للبيع',
+    'MarketSellResMaxAvergeSelltTitel'=>'اعلى القيمة للبيع',
+    'spyFakeAttackTitle'=>'الجاسوس',
+    'MarketSellResMaxAvergeSell'=>'اعلى القيمة للبيع',
+    'Vilige'=>'قرية',
+    'CAN_NOT_ATTAK_BETWEN_ATTACK'=>'لا تستطيع الهجوم عليه بين',
+    'CountAttackFakeAttackTitle'=>'عدد الهجمات',
+    'CountAttackkFakeAttack'=>'عدد الهجمات',
+    'NoAnyViligeCanAttacInTime' =>'لا يمكن هجوم بهذا الوقت',
+
+       'Payment'=>'Payment',
+       'Community_Plan'=>'Community Plan',
+       'Advenced_Plan'=>'Advenced Plan',
+       'Basic_Plan'=>'Basic Plan',
+       'Starter_Plan'=>'Starter Plan',
+       'ReadMore'=> 'Read More about plans . click here',
+       'ifuneednewplantelladmin'=>'If you want a custom plan, you can contact the administrator' , //اذا كنت تريد خطة مخصصة ، يمكنك اتصال بالمسؤول
+       'ifuneednewplantelladminmessegs'=>'انا اريد خطة مخصصة .
+       اريد كوبلاير يعمل هذا :
+       ١. كشف الهجمات .
+       2  .
+
+
+
+       ماهو سعر الخطة في الشهر ؟',
+
+       "AddProxy"=>"Add new proxies",
+       "SamerProxy"=>"summary of proxies",
+       "ClearAll"=>"Clear All" ,
+       "DelProxy" => "deleat proxies",
+       "del" => "del",
+       "add" => "Add",
+       "ProxyHasBeenRemoveIt"=>"Proxies Has Been Removed",
+       "do_not_select_if_you_wont_select_group"=>"do not select if you wont select by group",
+       "makrMAXS"=>"set numbet to set for 0",
+
+       'Not_activated'=>"Not activated",
+       'subscribe'=>"subscription",
+       'LoginByToken'=>"Login By Token",
+       'Changeyourinfo'=>"Change Your Info",
+       'SettingsUserGame'=>"Settings User Game",
+       'LogsLogin'=> "Logs Login",
+       'LogsBots'=>"Logs Bots",
+
+];
