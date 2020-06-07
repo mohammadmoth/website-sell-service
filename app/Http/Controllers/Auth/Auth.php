@@ -10,9 +10,9 @@ class Auth extends vvv
 {
     public  static function isadmin()
     {
-        $auth =  User::where('plan_id', '1')->where('id', Auth::id())->get();
+        $auth =  User::where('plan_id', '1')->where('id', Auth::id())->first();
 
-        if ($auth == '[]')
+        if ($auth == null)
             return FALSE;
         else
             return TRUE;
@@ -23,11 +23,11 @@ class Auth extends vvv
 
         return $plans->where('id', $id)->first()->name;
     }
-    public  static function isminadmin()
+    public  static function isFreelancer()
     {
-        $auth =  User::where('plan_id', '17')->where('id', Auth::id())->get();
+        $auth =  User::where('plan_id', '2')->where('id', Auth::id())->first();
 
-        if ($auth == '[]')
+        if ($auth == null)
             return FALSE;
         else
             return TRUE;

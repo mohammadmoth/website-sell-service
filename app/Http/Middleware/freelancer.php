@@ -1,12 +1,13 @@
 <?php
 
 namespace App\Http\Middleware;
+
 use Illuminate\Auth\Middleware\Authenticate;
-use App\Http\Controllers\Auth\Auth ;
+use App\Http\Controllers\Auth\Auth;
 
 use Closure;
 
-class admin extends Authenticate
+class freelancer extends Authenticate
 {
 
     /**
@@ -21,9 +22,9 @@ class admin extends Authenticate
         $this->authenticate($guards);
 
 
-        if (!Auth::isadmin() )
+        if (!Auth::isFreelancer())
             return redirect('\login');
-            else
+        else
             return $next($request);
     }
 }
