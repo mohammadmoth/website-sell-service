@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddPlanIdToUsersTable extends Migration
+class AddPersoneToUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,16 +14,14 @@ class AddPlanIdToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('lastname');
-            $table->string('address');
-            $table->string('city');
-            $table->string('street');
-            $table->string('zip');
-            $table->string('phone');
-            $table->string('mobile');
-            $table->string('whatsapp');
-
-
+            $table->string('lastname')->default("");
+            $table->string('address')->default("");
+            $table->string('city')->default("");
+            $table->string('street')->default("");
+            $table->string('zip')->default("");
+            $table->string('phone')->default("");
+            $table->string('mobile')->default("");
+            $table->string('whatsapp')->default("");
         });
     }
 
