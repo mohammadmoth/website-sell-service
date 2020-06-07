@@ -79,7 +79,7 @@
                             <a class="nav-link js-scroll-trigger" href="#contact">@lang('Welcome.contact')</a>
                         </li>
 
-                        <!-- Languages dropdown    -->
+                        <!--
                         <li class="nav-item dropdown">
                             <a id="languages" rel="follow" data-target="#" href="#" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false" class="nav-link language dropdown-toggle">
@@ -106,11 +106,11 @@
                                     alt="Russian" class="mr-2">Russian
                             </a></li>
                         @endif
-                        <!--  <li><a rel="nofollow" href="#" class="dropdown-item"> <img src="img/flags/16/FR.png" alt="English" class="mr-2">French -->
+                       <li><a rel="nofollow" href="#" class="dropdown-item"> <img src="img/flags/16/FR.png" alt="English" class="mr-2">French
                         </a></li>
                     </ul>
                     </li>
-                    <!--</ Languages dropdown >    -->
+                 </ Languages dropdown >    -->
 
                     @auth
                     <li class="nav-item">

@@ -357,10 +357,6 @@ var Ips =  JSON.parse( $(elant).attr("data-ips"));
 		$("#worldbutton").empty();
 		var htmlinput = "";
 
-        @if ( !Auth::isminadmin() )
-        if (status == 17  )
-        htmlinput += '<a class="dropdown-item" href="/dashboard/GetAllData?idworld=-9998&userid='+id+'"  target="_blank">Log Data</a>' ;
-            @endif
 		worlds.forEach(function(element) {
  htmlinput += '<a class="dropdown-item" href="/dashboard/GetAllData?idworld='+element.id+'"  target="_blank">'+element.nameworld+'</a>' ;
 });

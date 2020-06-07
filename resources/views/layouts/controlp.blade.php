@@ -311,7 +311,7 @@ background-attachment: fixed;
 										class="dropdown-item all-notifications text-center"> <strong>Read
 												all messages </strong></a></li>
 								</ul></li>
-							<!-- Languages dropdown    -->
+							<!-- Languages dropdown
 							<li class="nav-item dropdown">
                             <a id="languages" rel="follow"
 								data-target="#" href="#" data-toggle="dropdown"
@@ -340,10 +340,10 @@ background-attachment: fixed;
 											src="/img/flags/16/RU.png" alt="Russian" class="mr-2">Russian
 									</a></li>
                                      @endif
-									<!--  <li><a rel="nofollow" href="#" class="dropdown-item"> <img src="img/flags/16/FR.png" alt="English" class="mr-2">French -->
+
 									</a></li>
 						        </ul>
-						    </li>
+						    </li> -->
 						<!-- Logout    -->
 						<li class="nav-item"><a href="{{route('logout')}}" class="nav-link logout">@lang('Control.Logout')<i
 								class="fa fa-sign-out"></i></a></li>
@@ -368,7 +368,7 @@ background-attachment: fixed;
 				</div>
 				<!-- Sidebar Navidation Menus-->
 				@include('layouts.ListUser')
-		@if (auth::isadmin() || auth::isminadmin() )
+		@if (auth::isadmin()  )
             @include('layouts.ListAdmin')
 		@endif
 			</nav>
