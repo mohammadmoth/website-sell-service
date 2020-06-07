@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Auth;
+use App\Http\Controllers\Auth\Auth;
+use App\User;
+use Illuminate\Support\Facades\Validator;
 
 class HomeController extends Controller
 {
@@ -26,4 +28,59 @@ class HomeController extends Controller
     {
         return view('home');
     }
+
+    /**
+     * Update Information User Api
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function updateinforamtionAPI($request)
+    {
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'name' => 'required',
+                'lastname' => 'required',
+                'address' => 'required',
+                'city' => 'required',
+                'street' => 'required',
+                'zip' => 'required',
+                'phone' => 'required',
+                'mobile' => 'required',
+                'whatsapp' => 'required'
+            ]
+        );
+
+        if ($validator->passes()) {
+
+            $user = User::where("id", Auth::id())->first();
+            $user->name = $request->name;
+            $user->lastname = $request->lastname;
+            $user->city = $request->city;
+            $user->address = $request->address;
+            $user->street = $request->street;
+            $user->zip = $request->zip;
+            $user->phone = $request->phone;
+            $user->mobile = $request->mobile;
+            $user->whatsapp = $request->whatsapp;
+            $user->save();
+
+
+            return response()->json([
+                'error' => 0
+            ]);
+        } else {
+            return response()->json([
+                'error' => 1,
+                'data' => $validator->errors()
+                    ->all()
+            ], 400);
+        }
+    }
+
+    public function updateinforamtion()
+    {
+        return view('UserControl.Dashboard.Changeyourinfo');
+    }
+
 }
