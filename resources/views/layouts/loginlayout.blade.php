@@ -74,7 +74,7 @@
             @yield('content')
 
 
-            <div class="copyrights text-center">
+            <!--  <div class="copyrights text-center">
                 @if ( app()->getLocale() != 'ar')
                 <li><a style="color:red" rel="follow" href="/lang/ar" class="dropdown-item"> <img
                             src="/img/flags/16/AE.png" alt="Arabic" class="mr-2">Arabic</a></li>
@@ -86,10 +86,8 @@
                 <li><a style="color:red" rel="follow" href="/lang/ru" class="dropdown-item"> <img
                             src="/img/flags/16/RU.png" alt="Russian" class="mr-2">Russian</a></li>
                 @endif
-
-
                 </p>
-            </div>
+            </div> -->
         </div>
 
         <!-- JavaScript files-->

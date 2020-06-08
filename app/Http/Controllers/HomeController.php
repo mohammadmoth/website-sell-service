@@ -34,7 +34,7 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function updateinforamtionAPI($request)
+    public function updateinforamtionAPI(Request $request)
     {
         $validator = Validator::make(
             $request->all(),
@@ -80,7 +80,6 @@ class HomeController extends Controller
 
     public function updateinforamtion()
     {
-        return view('UserControl.Dashboard.Changeyourinfo');
+        return view('UserControl.Dashboard.Changeyourinfo')->with("user",  User::where("id", Auth::id())->first());
     }
-
 }
