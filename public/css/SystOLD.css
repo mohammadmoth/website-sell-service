@@ -11,7 +11,7 @@ body {
 hr {
   max-width: 50px;
   border-width: 3px;
-  border-color: #0845b7;
+  border-color: #F05F40;
 }
 
 hr.light {
@@ -19,14 +19,14 @@ hr.light {
 }
 
 a {
-  color: #0845b7;
+  color: #F05F40;
   -webkit-transition: all 0.2s;
   -moz-transition: all 0.2s;
   transition: all 0.2s;
 }
 
 a:hover {
-  color: #0845b7;
+  color: #f05f40;
 }
 
 h1,
@@ -39,7 +39,7 @@ h6 {
 }
 
 .bg-primary {
-  background-color: #0845b7 !important;
+  background-color: #a0816b !important;
 }
 
 .bg-dark {
@@ -66,7 +66,7 @@ section {
 
 ::selection {
   color: #fff;
-  background: #000000;
+  background: #212529;
   text-shadow: none;
 }
 
@@ -115,7 +115,7 @@ img::-moz-selection {
 
 #mainNav .navbar-nav > li.nav-item > a.nav-link.active,
 #mainNav .navbar-nav > li.nav-item > a.nav-link:focus.active {
-  color: #0845b7 !important;
+  color: #F05F40 !important;
   background-color: transparent;
 }
 
@@ -127,7 +127,7 @@ img::-moz-selection {
 @media (min-width: 992px) {
   #mainNav {
     border-color: #ff270000;
-    background-color: #bdbdbd;
+    background-color: #a0816b;
   }
   #mainNav .navbar-brand {
     color: rgba(255, 255, 255, 0.7);
@@ -140,15 +140,15 @@ img::-moz-selection {
   }
   #mainNav .navbar-nav > li.nav-item > a.nav-link,
   #mainNav .navbar-nav > li.nav-item > a.nav-link:focus {
-    color: rgba(0, 0, 0, 0.7);
+    color: rgba(255, 255, 255, 0.7);
   }
   #mainNav .navbar-nav > li.nav-item > a.nav-link:hover,
   #mainNav .navbar-nav > li.nav-item > a.nav-link:focus:hover {
-    color: #000;
+    color: #fff;
   }
   #mainNav.navbar-shrink {
     border-bottom: 1px solid rgba(33, 37, 41, 0.1);
-    background-color: #888787;
+    background-color: #212529;
   }
   #mainNav.navbar-shrink .navbar-brand {
     color: #F05F40;
@@ -158,26 +158,25 @@ img::-moz-selection {
   }
   #mainNav.navbar-shrink .navbar-nav > li.nav-item > a.nav-link,
   #mainNav.navbar-shrink .navbar-nav > li.nav-item > a.nav-link:focus {
-    color: #000;
+    color: #fff;
   }
   #mainNav.navbar-shrink .navbar-nav > li.nav-item > a.nav-link:hover,
   #mainNav.navbar-shrink .navbar-nav > li.nav-item > a.nav-link:focus:hover {
-    color: #0845b7;
+    color: #F05F40;
   }
 }
 
 header.masthead {
   padding-top: 10rem;
   padding-bottom: calc(10rem - 56px);
-  background-image: url("../img/A1.png");
+  background-image: url("../img/header.png");
+  background-position: center center;
+  -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
-  /* background-size: cover; */
-  background-color: #d6d4d4;
-  background-position-x: 10%;
-  background-position-y: 20%;
-  background-size: 100%;
-  background-repeat: no-repeat;
+  background-size: cover;
+  background-position-y: 10px;
+    background-color: #d2691e6e;
 }
 
 header.masthead hr {
@@ -284,7 +283,9 @@ header.masthead p {
   }
 }
 
-.text-primary {color: #0845b7 !important;}
+.text-primary {
+color: #d65252 !important;
+}
 
 .btn {
   font-weight: 700;
@@ -299,7 +300,7 @@ header.masthead p {
 }
 
 .btn-primary {
-  background-color: #000000;
+  background-color: #ecbe9e;
   border-color: #F05F40;
 }
 
@@ -415,5 +416,5 @@ header.masthead p {
 }
 
 .MedelMo{
-	background-color: #d6d4d4;
+	background-color: #ecbe9e;
 }

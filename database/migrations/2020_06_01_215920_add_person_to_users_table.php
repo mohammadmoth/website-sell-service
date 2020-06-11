@@ -15,7 +15,7 @@ class AddPersonToUsersTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->string('lastname')->default("");
-            $table->string('address')->default("");
+            $table->string('county')->default("");
             $table->string('city')->default("");
             $table->string('street')->default("");
             $table->string('zip')->default("");

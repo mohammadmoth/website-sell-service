@@ -11,5 +11,7 @@
 |
 */
 Route::middleware('langconfing')->group(function () {
-    Route::get('/showallprojects', 'HomeController@updateinforamtion')->name('showallprojects');
+    Route::get('/showallprojects', 'NormalUserController@ShowAllProjects')->name('showallprojects');
+
+    Route::post('/api/uploadfiles', 'NormalUserController@uploadfiles')->name('uploadfiles');
 });

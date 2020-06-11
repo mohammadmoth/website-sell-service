@@ -41,7 +41,7 @@ class HomeController extends Controller
             [
                 'name' => 'required',
                 'lastname' => 'required',
-                'address' => 'required',
+                'county' => 'required',
                 'city' => 'required',
                 'street' => 'required',
                 'zip' => 'required',
@@ -57,7 +57,7 @@ class HomeController extends Controller
             $user->name = $request->name;
             $user->lastname = $request->lastname;
             $user->city = $request->city;
-            $user->address = $request->address;
+            $user->county = $request->county;
             $user->street = $request->street;
             $user->zip = $request->zip;
             $user->phone = $request->phone;
