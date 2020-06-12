@@ -28,7 +28,7 @@
                 @foreach ($projects as $project)
                 <div id="{{$project->id}}" class="tab-pane fade " style='display: nono'>
 
-                    <form action='' method='POST' class="form-horizontal" id='' data-id='{{$project->name}}'>
+                    <form action='' method='POST' class="form-horizontal" id='savedata' data-id='{{$project->name}}'>
                         @csrf
 
                         <input type="hidden" name='id' value='{{$project->id}}'>
@@ -74,56 +74,71 @@
 
 
 <script>
-    function Sendfile()
-    {
-       var html = `<div class="progress">
-    <div class="bar"></div >
-    <div class="percent">0%</div >
-</div>
+    function Uploadfile () {
 
-<div id="status"></div>`;
+        var html = `        <div class='progress' id="progressDivId">
+            <div class='progress-bar' id='progressBar'></div>
+            <div class='percent' id='percent'>0%</div>
+        </div>
+        <div style="height: 10px;"></div>`;
 
+    	    $('form.form-horizontal').ajaxForm({
+    	      //  target: '#outputImage',
+                url: '{{route("uploadfiles")}}',
+                type: "post",
+                data:{
+                    idprject : $("#id").val()
 
+                            },
 
-$.ajax({
-    xhr: function() {
-        var xhr = new window.XMLHttpRequest();
-        xhr.upload.addEventListener("progress", function(evt) {
-            if (evt.lengthComputable) {
-                var percentComplete = (evt.loaded / evt.total) * 100;
-                //Do something with upload progress here
-            }
-       }, false);
-       return xhr;
-    },
-    type: 'POST',
-    url: "{{route("uploadfiles")}}",
-    data: {},
-    success: function(data){
-        //Do something on success
+    	        beforeSubmit: function () {
+    	        //	  $("#outputImage").hide();
+    	       	   if($("#fileInput").val() == "") {
+    	       // 		   $("#outputImage").show();
+    	       // 		   $("#outputImage").html("<div class='error'>Choose a file to upload.</div>");
+                    return false;
+                }
+    	            $("#progressDivId").css("display", "block");
+    	            var percentValue = '0%';
+
+    	            $('#progressBar').width(percentValue);
+    	            $('#percent').html(percentValue);
+    	        },
+    	        uploadProgress: function (event, position, total, percentComplete) {
+
+    	            var percentValue = percentComplete + '%';
+    	            $("#progressBar").animate({
+    	                width: '' + percentValue + ''
+    	            }, {
+    	                duration: 5000,
+    	                easing: "linear",
+    	                step: function (x) {
+                        percentText = Math.round(x * 100 / percentComplete);
+    	                    $("#percent").text(percentText + "%");
+                        if(percentText == "100") {
+                        	   $("#outputImage").show();
+                        }
+    	                }
+    	            });
+    	        },
+    	        error: function (response, status, e) {
+    	            alert('Oops something went.');
+    	        },
+
+    	        complete: function (xhr) {
+    	            if (xhr.responseText && xhr.responseText != "error")
+    	            {
+    	            	  $("#outputImage").html(xhr.responseText);
+    	            }
+    	            else{
+    	               	$("#outputImage").show();
+        	            	$("#outputImage").html("<div class='error'>Problem in uploading file.</div>");
+        	            	$("#progressBar").stop();
+    	            }
+    	        }
+            });
+
+            $('form.form-horizontal').submit();
     }
-});
 
-var bar = $('#bar');
-    var percent = $('#percent');
-    var status = $('#status');
-
-    $('form').ajaxForm({
-        beforeSend: function() {
-            status.empty();
-            var percentVal = '0%';
-            bar.width(percentVal);
-            percent.html(percentVal);
-        },
-        uploadProgress: function(event, position, total, percentComplete) {
-            var percentVal = percentComplete + '%';
-            bar.width(percentVal);
-            percent.html(percentVal);
-        },
-        complete: function(xhr) {
-            status.html(xhr.responseText);
-        }
-    });
-
-    }
 @endsection

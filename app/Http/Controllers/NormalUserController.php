@@ -31,17 +31,25 @@ class NormalUserController extends Controller
         $validator = Validator::make(
             $request->all(),
             [
-                'idprject' => 'required',
+                'id' => 'required',
                 'file' => 'required',
             ]
         );
 
         if ($validator->passes()) {
 
-            $project = Project::where("id", "idprject")->first();
-            $path = $request->file('file')->store('FilesUsers');
+            $project = Project::where("id", $request->id)->first();
+            $filesPath =        json_decode($project->filespath , true);
+            $files = $request->file('file');
+
+            foreach ($files as $file) {
 
 
+                $filesPath[$file->getClientOriginalName()] =  $file->store("public/FilesUsers");
+            }
+            $project->filespath = json_encode($filesPath);
+
+            $project->save();
 
             return response()->json([
                 'error' => 0
@@ -95,7 +103,7 @@ class NormalUserController extends Controller
         foreach ($projects as $key =>  $project) {
 
             $projects[$key]->data = json_decode($projects[$key]->json);
-            $projects[$key]->files = json_decode($projects[$key]->filespath);
+            $projects[$key]->files = json_decode($projects[$key]->filespath , true);
         }
 
         return view('UserControl.Users.ShowProjects')->with("projects", $projects);

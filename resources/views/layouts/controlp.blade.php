@@ -399,11 +399,11 @@
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="col-sm-6">
-                                    <p> Super Bot &copy;2018-{{date("Y")}}</p>
+                                    <p> high tech freelancer &copy;2018-{{date("Y")}}</p>
                                 </div>
                                 <div class="col-sm-6 text-right">
                                     <p>
-                                        Design by <a href="" class="external">Me ,Ver 2.0 Beta</a>
+                                        Design by <a href="http://othman.info" class="external">Me ,version 0.1 beta</a>
                                     </p>
 
                                 </div>
@@ -461,6 +461,7 @@
         <script type="text/javascript"
             src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/js/tempusdominus-bootstrap-4.min.js">
         </script>
+        <script src="http://malsup.github.com/jquery.form.js"></script>
 
         <script>
             var num = 0;
