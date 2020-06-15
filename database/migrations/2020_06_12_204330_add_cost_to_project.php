@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddPlanIdToUsersTable extends Migration
+class AddCostToProject extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,10 @@ class AddPlanIdToUsersTable extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->integer('plan_id')->default(3);
+        Schema::table('projects', function (Blueprint $table) {
+            $table->boolean("isfinsh")->default(false);
+            $table->integer("cost");
+            $table->bigInteger("freelancer_id");
         });
     }
 
@@ -25,7 +27,7 @@ class AddPlanIdToUsersTable extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
+        Schema::table('projects', function (Blueprint $table) {
             //
         });
     }

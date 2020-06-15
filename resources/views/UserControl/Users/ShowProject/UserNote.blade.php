@@ -5,7 +5,7 @@
             <div class="input-group">
 
 
-                    <textarea type="text" id="devnotes"  rows="5"  class="form-control"></textarea>
+                    <textarea @if ( $project->isfinsh )disabled @endif type="text" id="devnotes"  rows="5"  class="form-control"></textarea>
 
             </div>
         </div>

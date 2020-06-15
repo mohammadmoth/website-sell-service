@@ -8,7 +8,7 @@
                     <label for="file" class="col-sm-3 form-control-label">File input</label>
                     @foreach ($project->files as $fileName => $filePath)
                     <div class="col-sm-9">
-                        <a href="/{{$filePath}}">{{$fileName}} </a>
+                        <a target="_blank" href="/{{$filePath}}">{{$fileName}} </a>
                     </div>
                     @endforeach
 
@@ -28,8 +28,9 @@
                     <label for="file" class="col-sm-3 form-control-label">File input</label>
                     <div class="col-sm-9">
 
-                        <input id="file" name="file[]" type="file" accept=".jpg, .jpeg, .png" multiple
-                            onchange="Uploadfile()" class="form-control-file">
+                        <input @if ( $project->isfinsh )disabled @endif id="file" name="file[]" type="file"
+                        accept=".jpg, .jpeg, .png" multiple
+                        onchange="Uploadfile()" class="form-control-file">
 
                     </div>
                 </div>

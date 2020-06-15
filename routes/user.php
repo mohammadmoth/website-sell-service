@@ -14,4 +14,8 @@ Route::middleware('langconfing')->group(function () {
     Route::get('/showallprojects', 'NormalUserController@ShowAllProjects')->name('showallprojects');
 
     Route::post('/api/uploadfiles', 'NormalUserController@uploadfiles')->name('uploadfiles');
+
+    Route::post('/api/removeprojectapi', 'NormalUserController@removeprojectapi')->name('removeprojectapi');
+    Route::post('/api/endprojectapi', 'NormalUserController@endprojectapi')->name('endprojectapi');
+
 });

@@ -1,6 +1,6 @@
 @extends('layouts.controlp')
 
-@section('ShowProjects' , 'active')
+@section('PurchaseItem' , 'active')
 
 @section('content')
 
@@ -12,57 +12,60 @@
     <div class="card">
 
         <div class="card-header d-flex align-items-center">
-            <h3 class="h4 whitefont  ">Projects</h3>
+            <h3 class="h4 whitefont  ">Purchase Item</h3>
         </div>
         <p></p>
         <div class="card-body">
-            <ul class="nav nav-tabs nav-justified">
-                @foreach ($projects as $project)
-                <li class="nav-item">
-                    <a class="nav-link " data-toggle="tab" href="#{{$project->id}}">{{$project->name}}</a>
-                </li>
-                @endforeach
-            </ul>
-
             <div class="tab-content">
-                @foreach ($projects as $project)
-                <div id="{{$project->id}}" class="tab-pane fade " style='display: nono'>
+                <div class="form-group row">
+                    <label class="col-sm-3 form-control-label"></label>
+                    <div class="col-sm-9">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <p>
+                                    Itme Name : {{$item->name}}
+                                </p>
 
-                    <form action='' method='POST' class="form-horizontal" id='savedata' data-id='{{$project->name}}'>
-                        @csrf
-
-                        <input type="hidden" name='id' value='{{$project->id}}'>
-
-
-
-                        <div class='card-body'>
-
-                            @include('UserControl.Users.ShowProject.SaveSettings')
-                            <hr>
-                            @include('UserControl.Users.ShowProject.UserNote')
-                            <hr>
-                            @include('UserControl.Users.ShowProject.UserDEV')
-                            <hr>
-                            @include('UserControl.Users.ShowProject.UploadFilesAndShow')
-                            <hr>
-                            @include('UserControl.Users.ShowProject.EndProject')
-                            <hr>
-                            @include('UserControl.Users.ShowProject.RemoveProject')
-                            <hr>
-
+                            </div>
                         </div>
+                    </div>
+                    <div class="col-sm-9">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <p>
+                                    Itme Decrption : {{$item->Decrption}}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-9">
+                        <div class="form-group">
+                            <div class="input-group">
+
+                                <p>
+                                    Itme Cost : {{$item->Cost}}
+                                </p>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-9">
+                        <div class="form-group">
+                            <div class="input-group">
+
+                                <div class="d-flex flex-row-reverse"> <input type="button" onclick="PURCHASE()"
+                                        value="PURCHASE NOW" id="PURCHASE" class="btn btn-success"></div>
 
 
-                    </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                @endforeach
-
-
-
 
             </div>
         </div>
     </div>
+</div>
 </div>
 
 

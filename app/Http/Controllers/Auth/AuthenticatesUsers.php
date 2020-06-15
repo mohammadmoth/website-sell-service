@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\User;
 use Illuminate\Foundation\Auth\RedirectsUsers;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Http\Request;
@@ -82,10 +83,13 @@ trait AuthenticatesUsers
      */
     protected function attemptLogin(Request $request)
     {
-        return $this->guard()->attempt(
-            $this->credentials($request),
-            $request->filled('remember')
-        );
+        if (User::where("email", $request->input($this->username()))->first()->status == 0)
+            return $this->guard()->attempt(
+                $this->credentials($request),
+                $request->filled('remember')
+            );
+        else
+            return false;
     }
 
     /**

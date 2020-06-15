@@ -399,7 +399,7 @@
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="col-sm-6">
-                                    <p> high tech freelancer &copy;2018-{{date("Y")}}</p>
+                                    <p> High Tech Freelancer &copy;2018-{{date("Y")}}</p>
                                 </div>
                                 <div class="col-sm-6 text-right">
                                     <p>

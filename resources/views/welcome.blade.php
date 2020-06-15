@@ -115,10 +115,10 @@
                     @auth
                     <li class="nav-item">
                         <a class="nav-link js-scroll-trigger"
-                            href="{{ url('dashboard') }}">@lang('Control.Dashboard')</a>
+                            href="{{ url('home') }}">@lang('Control.Dashboard')</a>
                     </li>
                     <!--<li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="{{ url('dashboard') }}">@lang('Welcome.Hello') {{Auth::user()->name}} ! </a>
+              <a class="nav-link js-scroll-trigger" href="{{ url('home') }}">@lang('Welcome.Hello') {{Auth::user()->name}} ! </a>
             </li> -->
 
                     @else
@@ -228,99 +228,6 @@
                 </div>
             </div>
             <div class="row no-gutters">
-                @if (false)
-                @foreach ($array as $Plan )
-                <?php $datapaln = json_decode($Plan->decr);?>
-
-                <div class="col-12 col-md-6 col-lg-3">
-                    <!-- Package Price  -->
-                    <div class="single-price-plan text-center">
-                        <!-- Package Text  -->
-                        <div class="package-plan">
-
-                            <h5>@lang('Welcome.'. $Plan->name)</h5>
-                            <div class="ca-price d-flex justify-content-center">
-                                <!-- <a href="https://wa.me/0037379752939">
-                                    <img  src="https://static.adweek.com/adweek.com-prod/wp-content/uploads/sites/2/2015/09/WhatsAppIcon640x480.jpg" alt="Smiley face" height="50" width="70"></i>
-                                    <div>@lang('Welcome.CallMe')</div> <div><p>+37379752939</p></div></a> -->
-                                <span>$</span>
-                                <h4>@foreach (App\RunBots\BotHelper::$priceing as $price )
-                                    @if( $price['plannumberindatabase'] == $Plan->id)
-                                    {{ ceil( ( $price['price'] * App\RunBots\BotHelper::$procetTransfer + App\RunBots\BotHelper::$proTransfer ) *100 )/100}}
-                                    @break
-                                    @endif
-                                    @endforeach</h4>
-                            </div>
-                        </div>
-                        <div class="package-description">
-                            <p>@lang('Welcome.Advenced_Plan2') @if(isset($datapaln->allowbots->Thif))
-                                @if(!$datapaln->allowbots->Thif) @lang('Welcome.locked') @endif @else
-                                @lang('Welcome.locked') @endif</p>
-                            <p>@lang('Welcome.Advenced_Plan4') @if(isset($datapaln->allowbots->BilidingUpdade))
-                                @if(!$datapaln->allowbots->BilidingUpdade) @lang('Welcome.locked') @endif @else
-                                @lang('Welcome.locked') @endif</p>
-                            <p>@lang('Welcome.Advenced_Plan6') @if(isset($datapaln->allowbots->AuthTuch))
-                                @if(!$datapaln->allowbots->AuthTuch) @lang('Welcome.locked') @endif @else
-                                @lang('Welcome.locked') @endif</p>
-                            <p>@lang('Welcome.Advenced_Plan9') @if(isset($datapaln->allowbots->CoinMakerBot))
-                                @if(!$datapaln->allowbots->CoinMakerBot) @lang('Welcome.locked') @endif @else
-                                @lang('Welcome.locked') @endif</p>
-                            <p>@lang('Welcome.plandec1') @if(isset($datapaln->allowbots->SendResSnob))
-                                @if(!$datapaln->allowbots->SendResSnob) @lang('Welcome.locked') @endif @else
-                                @lang('Welcome.locked') @endif</p>
-                            <p>@lang('Welcome.Advenced_Plan10') @if(isset($datapaln->allowbots->ResourceBalancer))
-                                @if(!$datapaln->allowbots->ResourceBalancer) @lang('Welcome.locked') @endif @else
-                                @lang('Welcome.locked') @endif</p>
-                            <p>@lang('Welcome.Advenced_Plan11') @if(isset($datapaln->allowbots->MakeNewNabilBot))
-                                @if(!$datapaln->allowbots->MakeNewNabilBot) @lang('Welcome.locked') @endif @else
-                                @lang('Welcome.locked') @endif</p>
-                            <p>@lang('Welcome.Advenced_Plan3') @if(isset($datapaln->allowbots->scavengebot))
-                                @if(!$datapaln->allowbots->scavengebot) @lang('Welcome.locked') @endif @else
-                                @lang('Welcome.locked') @endif</p>
-                            <p>@lang('Welcome.plandec2') @if(isset($datapaln->allowbots->SendResourceViliges))
-                                @if(!$datapaln->allowbots->SendResourceViliges) @lang('Welcome.locked') @endif @else
-                                @lang('Welcome.locked') @endif</p>
-                            <p>@lang('Welcome.Advenced_Plan13') @if(isset($datapaln->allowbots->NewBarbarAttack))
-                                @if(!$datapaln->allowbots->NewBarbarAttack) @lang('Welcome.locked') @endif @else
-                                @lang('Welcome.locked') @endif</p>
-                            <p>@lang('Welcome.Advenced_Plan12') @if(isset($datapaln->allowbots->smashingwalls))
-                                @if(!$datapaln->allowbots->smashingwalls) @lang('Welcome.locked') @endif @else
-                                @lang('Welcome.locked') @endif</p>
-                            <p>@lang('Welcome.Advenced_Plan17') @if(isset($datapaln->allowbots->MakeArrmy))
-                                @if(!$datapaln->allowbots->MakeArrmy) @lang('Welcome.locked') @endif @else
-                                @lang('Welcome.locked') @endif</p>
-                            <p>@lang('Welcome.Advenced_Plan19') @if(isset($datapaln->allowbots->FakeAttaks))
-                                @if(!$datapaln->allowbots->FakeAttaks) @lang('Welcome.locked') @endif @else
-                                @lang('Welcome.locked') @endif</p>
-                            <p>@lang('Welcome.Advenced_Plan23') @if(isset($datapaln->allowbots->SendAttakByTime))
-                                @if(!$datapaln->allowbots->SendAttakByTime) @lang('Welcome.locked') @endif @else
-                                @lang('Welcome.locked') @endif</p>
-                            <p>@lang('Welcome.plandec3') @if(isset($datapaln->allowbots->SendAttakByTime))
-                                @if(!$datapaln->allowbots->SendAttakByTime) @lang('Welcome.locked') @endif @else
-                                @lang('Welcome.locked') @endif</p>
-                            <p>@lang('Welcome.Advenced_Plan21') @if(isset($datapaln->allowbots->SendAttakByTime))
-                                @if(!$datapaln->allowbots->SendAttakByTime) @lang('Welcome.locked') @endif @else
-                                @lang('Welcome.locked') @endif</p>
-                            <p>@lang('Welcome.Community_Plan23') @if(isset($datapaln->allowbots->SendAttakByTime))
-                                @if(!$datapaln->allowbots->SendAttakByTime) @lang('Welcome.locked') @endif @else
-                                @lang('Welcome.locked') @endif</p>
-                            <p>@lang('Welcome.Advenced_Plan15') @if(isset($datapaln->allowbots->ThifHelperPlayers))
-                                @if(!$datapaln->allowbots->ThifHelperPlayers) @lang('Welcome.locked') @endif @else
-                                @lang('Welcome.locked') @endif</p>
-                            <p>@lang('Welcome.plandec4') @if(isset($datapaln->allowbots->SetExceptionVillages))
-                                @if(!$datapaln->allowbots->SetExceptionVillages) @lang('Welcome.locked') @endif @else
-                                @lang('Welcome.locked') @endif</p>
-                            <p>@lang('Welcome.plandec5' , ["attribute" => $datapaln->world])</p>
-                        </div>
-                        <!-- Plan Button  -->
-                        <div class="plan-button">
-                            <a href="{{ url('dashboard') }}">@lang('Welcome.Select_Plan')</a>
-                        </div>
-                    </div>
-                </div>
-                @endforeach
-
-                @endif
 
                 <!-- start -->
                 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
@@ -341,7 +248,12 @@
                                 <span class="price">199 <b>$</b></span>
                             </div>
                             <div class="back">
+                                @guest
                                 <a href="#" class="button">Purchase now</a>
+                                @endguest
+                                @auth
+                                <a href="home" class="button">Purchase now</a>
+                                @endguest
                             </div>
                         </div>
                     </div>

@@ -6,75 +6,73 @@
     <div class="card">
 
         <div class="card-header d-flex align-items-center">
-            <h3 class="h4 whitefont  ">@lang("Control.ChangeyourInfo")</h3>
+            <h3 class="h4 whitefont  ">Change your Infomation</h3>
         </div>
         <p></p>
         <div class="card-body">
             <form action='#' class="form-horizontal" id='updateuser'>
                 @csrf
                 <div class="row">
-                    <label class="col-sm-3 form-control-label">@lang("Control.YourInformation")</label>
+                    <label class="col-sm-3 form-control-label">Your Information</label>
                     <div class="col-sm-9">
                         <div class="form-group-material">
                             <input id="name" value="{{$user->name}}" type="text" name="name" required
-                                class="input-material"> <label for="name"
-                                class="label-material">@lang("Control.name")</label>
+                                class="input-material"> <label for="name" class="label-material">Name</label>
                         </div>
                         <div class="form-group-material">
                             <input id="lastname" value="{{$user->lastname}}" type="text" name="lastname" required
-                                class="input-material"> <label for="lastname"
-                                class="label-material">@lang("Control.lastname")</label>
+                                class="input-material"> <label for="lastname" class="label-material">Lastname</label>
                         </div>
 
                         <div class="form-group-material">
                             <input id="email" type="email" value="{{$user->email}}" name="email" required
-                                class="input-material"> <label for="email" class="label-material">@lang("Control.email")
+                                class="input-material"> <label for="email" class="label-material">email
                             </label>
                         </div>
 
-
+                        <hr>
                     </div>
-                    <label class="col-sm-3 form-control-label">@lang("Control.Address")</label>
+
+                    <label class="col-sm-3 form-control-label">Address</label>
                     <div class="col-sm-9">
 
                         <div class="form-group-material">
-                            <input id="address" value="{{$user->address}}" type="text" name="address" required
-                                class="input-material"> <label for="address"
-                                class="label-material">@lang("Control.country") </label>
+                            <input id="county" value="{{$user->county}}" type="text" name="county" required
+                                class="input-material"> <label for="county" class="label-material">Country</label>
                         </div>
                         <div class="form-group-material">
                             <input id="city" value="{{$user->city}}" type="text" name="city" required
-                                class="input-material"> <label for="city" class="label-material">@lang("Control.city")
+                                class="input-material"> <label for="city" class="label-material">City
                             </label>
                         </div>
                         <div class="form-group-material">
                             <input id="zip" value="{{$user->street}}" type="text" name="zip" required
-                                class="input-material"> <label for="zip"
-                                class="label-material">@lang("Control.postcode") </label>
+                                class="input-material"> <label for="zip" class="label-material">Postcode </label>
                         </div>
                         <div class="form-group-material">
                             <input id="street" value="{{$user->street}}" type="text" name="street" required
-                                class="input-material"> <label for="street"
-                                class="label-material">@lang("Control.street") </label>
+                                class="input-material"> <label for="street" class="label-material">Street</label>
                         </div>
+                        <hr>
                     </div>
-                    <label class="col-sm-3 form-control-label">@lang("Control.yournumbers")</label>
+
+                    <label class="col-sm-3 form-control-label">Your Numbers</label>
                     <div class="col-sm-9">
                         <div class="form-group-material">
                             <input id="phone" pattern="[+][0-9]{8,}" value="{{$user->phone}}" type="tel" name="phone"
                                 required class="input-material"> <label for="phone"
-                                class="label-material">@lang("Control.phone")+49xxxxxxxx
+                                class="label-material">phone +49xxxxxxxx
                             </label>
                         </div>
                         <div class="form-group-material">
                             <input id="mobile" pattern="[+][0-9]{8,}" value="{{$user->mobile}}" type="text"
                                 name="mobile" required class="input-material">
-                            <label for="mobile" class="label-material">@lang("Control.mobile") +49xxxxxxxx</label>
+                            <label for="mobile" class="label-material">mobile +49xxxxxxxx</label>
                         </div>
                         <div class="form-group-material">
                             <input id="whatsapp" pattern="[+][0-9]{8,}" value="{{$user->whatsapp}}" type="text"
                                 name="whatsapp" required class="input-material">
-                            <label for="whatsapp" class="label-material">@lang("Control.whatsapp")+49xxxxxxxx </label>
+                            <label for="whatsapp" class="label-material">whatsapp +49xxxxxxxx </label>
                         </div>
                         <div class="form-group-material">
 
@@ -102,7 +100,7 @@ if ( data.error == 0 )
 
 $.alert({
 title: '@lang("login.An_S")',
-content: '@lang("Control.ok")',
+content: 'ok',
 
 
 typeAnimated: true,

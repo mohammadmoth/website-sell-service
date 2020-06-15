@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Project extends Model
+class Transfers extends Model
 {
 
 
@@ -14,7 +14,7 @@ class Project extends Model
      * @var array
      */
     protected $fillable = [
-        "users_id", 'name', 'json',  'filespath', "isfinsh", "cost", "freelancer_id"
+        "form_users_id", 'to_users_id', "projects_id", 'value'
 
     ];
 }

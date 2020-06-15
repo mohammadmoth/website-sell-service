@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddPlanIdToUsersTable extends Migration
+class AddMoneyToUser extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,9 @@ class AddPlanIdToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->integer('plan_id')->default(3);
+            $table->integer('money')->default(0);
+            $table->integer('status')->default(3);
+
         });
     }
 
