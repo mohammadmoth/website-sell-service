@@ -19,8 +19,8 @@
             <div class="col-lg-6 bg-white">
               <div class="form d-flex align-items-center">
                 <div class="content">
-                    <p>Work with us ? Let's do it </p>
-                  <form  method="POST" action="{{ route('register') }}" class="form-validate" novalidate="novalidate">
+                    <p>Do't Have Time ? Or Need Help Sign With Us </p>
+                  <form  method="POST"  class="form-validate" novalidate="novalidate">
                      @csrf
 
                     <div class="form-group">

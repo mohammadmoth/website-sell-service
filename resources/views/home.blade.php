@@ -9,7 +9,7 @@
     <div class="card">
 
         <div class="card-header d-flex align-items-center">
-            <h3 class="h4 whitefont  ">@lang('Control.subscribe_info')</h3>
+            <h3 class="h4 whitefont  ">Info Your Items</h3>
 
 
 
@@ -18,14 +18,21 @@
         <p></p>
 
         <div class="card-body">
+            @if (count($allProjects)!=0)
+            @foreach ($allProjects as $project)
+            @if ( $project->isfinsh)
+            @continue
+            @endif
+            <div> <label class="form-control-label" style="font-size: large;"> {{ $project->name }} : </label></div>
+
+            @endforeach
+            @else
             <div> <label class="form-control-label" style="
-                        font-size: large;
-                    ">@lang('Control.your_subscrib_end_on'): </label></div>
-            <div>
-                <label class="form-control-label" style="
-                                          font-size: large;
-                                      ">@lang('Control.YouHave'): <span id="date"></span></label>
-            </div>
+                font-size: large;"> You do't have any project active in your account </label></div>
+
+            @endif
+
+
 
         </div>
     </div>
@@ -35,47 +42,33 @@
     <div class="card">
 
         <div class="card-header d-flex align-items-center">
-            <h3 class="h4 whitefont  ">@lang('Control.addsubscribe')</h3>
-
-
-
-
+            <h3 class="h4 whitefont  ">Purchase Items</h3>
         </div>
         <p></p>
 
         <div class="card-body">
 
-            <form action="/rect" method="post" id="payment-form">
+
                 @csrf
                 <div class="form-group col-md-6 ">
-                    <label for="Status">@lang('Control.plan')</label>
+                    <label for="items_id">Select Items</label>
 
-                    <select id='plan_id' class="form-control input-material" name="plan_id" required>
-
-
+                    <select id='items_id' class="form-control input-material" name="items_id" required>
                     </select>
-                    <a href="/#PricingPlan"> @lang('Control.ReadMore')</a>
+
+                </div>
+                <div class="form-group col-md-6 ">
+                    <div class=" form-row">  <button class="btn btn-danger">Add money</button>
+
                 </div>
 
-                <div id="card-element">
-                    <label for="card-element">
-                        @lang('Control._Credit_or_debit_card_googlepay_apply_pay')
-                        <div> <br>@lang('Control.ifuneednewplantelladmin')</div>
-                    </label>
-                    <!-- A Stripe Element will be inserted here. -->
-                </div>
-                <div id="card-element">
-                    <label for="card-element">
 
-                        <a
-                            href="https://wa.me/0037379752939?text={{urlencode(__('Control.ifuneednewplantelladminmessegs'))}}">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/766px-WhatsApp.svg.png"
-                                style="
-                           @if(app()->getLocale() !=" ar") left: 20px; @else right: 12px; @endif position:
-                                relative; " alt=" Smiley face" height="70" width="70"></i>
-                            <div style="
-                            @if(app()->getLocale() !=" ar") left: 20px; @else right: 20px; @endif position: relative; ">@lang('Welcome.CallMe')</div> <div><p>+37379752939</p></div></a>
-                      </label> </div>
+                    <a href="/#PricingPlan"> Read More about Items . click here</a>
+                </div>
+
+
+
+
                     <div class=" form-row">
 
 
@@ -84,8 +77,8 @@
                                 <div id="card-errors" role="alert"></div>
                             </div>
 
-                            <button class="btn btn-danger">@lang("Control.Payment")</button>
-            </form>
+                            <button class="btn btn-danger">Add money</button>
+
         </div>
 
     </div>

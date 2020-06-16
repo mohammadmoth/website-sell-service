@@ -70,10 +70,10 @@
                             <a class="nav-link js-scroll-trigger" href="#about">@lang('Welcome.about')</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link js-scroll-trigger" href="#services">@lang('Welcome.services')</a>
+                            <a class="nav-link js-scroll-trigger" href="#services">Our</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link js-scroll-trigger" href="#PricingPlan">@lang('Welcome.PricingPlan')</a>
+                            <a class="nav-link js-scroll-trigger" href="#PricingPlan">Services</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link js-scroll-trigger" href="#contact">@lang('Welcome.contact')</a>
@@ -126,7 +126,7 @@
                         <a class="nav-link js-scroll-trigger" href="{{ url('login') }}">@lang('login.login')</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="{{ url('register') }}">@lang('login.Signup')</a>
+                        <a class="nav-link js-scroll-trigger" href="{{ url('register') }}">New Freelancer</a>
                     </li>
 
                     @endauth
@@ -222,7 +222,7 @@
                 <div class="col-12">
                     <!-- Heading Text  -->
                     <div class="section-heading text-center">
-                        <h2>@lang('Welcome.Pricing_Plan')</h2>
+                        <h2>Service</h2>
 
                     </div>
                 </div>
@@ -249,10 +249,10 @@
                             </div>
                             <div class="back">
                                 @guest
-                                <a href="#" class="button">Purchase now</a>
+                                <a href="{{route("signupuser")}}" class="button">Purchase now</a>
                                 @endguest
                                 @auth
-                                <a href="home" class="button">Purchase now</a>
+                                <a href="{{route("signupuser")}}" class="button">Purchase now</a>
                                 @endguest
                             </div>
                         </div>

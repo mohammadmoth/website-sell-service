@@ -22,6 +22,12 @@ Route::middleware('langconfing')->group(function () {
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 
+    Route::get('/signupuser', 'Auth\RegisterController@signupNromalUser')->name('signupuser');
+
+
+
+
+
     Route::get('/lang/{key}', function ($key) {
         session()->put('locale', $key);
         return redirect()->back();
@@ -31,4 +37,7 @@ Route::middleware('langconfing')->group(function () {
 
     Route::get('/edit-info', 'HomeController@updateinforamtion')->name('edit-info');
     Route::post('api/edit-info', 'HomeController@updateinforamtionAPI');
+
+
+
 });

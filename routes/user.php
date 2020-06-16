@@ -18,4 +18,9 @@ Route::middleware('langconfing')->group(function () {
     Route::post('/api/removeprojectapi', 'NormalUserController@removeprojectapi')->name('removeprojectapi');
     Route::post('/api/endprojectapi', 'NormalUserController@endprojectapi')->name('endprojectapi');
 
+
+
+    Route::get('/PurchaseItem', 'NormalUserController@PurchaseItem')->name('PurchaseItem');
+
+
 });

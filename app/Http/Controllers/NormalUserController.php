@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Auth\Auth as AuthAuth;
+use App\Items;
 use App\Project;
 use App\Transfers;
 use App\User;
@@ -192,6 +193,34 @@ class NormalUserController extends Controller
                 'data' => $validator->errors()
                     ->all()
             ], 400);
+        }
+    }
+    /**
+     *
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function PurchaseItem(Request $request)
+    {
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'id' => 'required',
+
+            ]
+        );
+
+        if ($validator->passes()) {
+            $Items =   Items::where("id", $request->id)->first();
+            if (   $Items == null)
+            {
+
+                return redirect("/404");
+            }
+            return view("UserControl.Users.InvoiceSystem.PurchaseItem");
+
+        } else {
+            return redirect("/404");
         }
     }
 }

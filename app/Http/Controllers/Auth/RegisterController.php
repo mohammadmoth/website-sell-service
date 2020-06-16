@@ -70,4 +70,13 @@ class RegisterController extends Controller
             'plan_id' => 2,
         ]);
     }
+
+
+    public function signupNromalUser()
+    {
+        return view('auth.passwords.signupuser');
+
+    }
+
+
 }
