@@ -5,4 +5,7 @@
         </a></li>
     <li class="@yield('ShowProjects')"><a href="{{route('showallprojects')}}"> <i class="fa fa-folder"></i>Show All Projects
         </a></li>
+        <li class="@yield('Invoices')"><a href="{{route('Invoices')}}"> <i class="fa fa-file-word-o"></i>Invoices
+        </a></li>
+
 </ul>

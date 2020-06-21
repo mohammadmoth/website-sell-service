@@ -211,11 +211,11 @@
                                 <!-- Navbar Brand -->
                                 <a href="index.html" class="navbar-brand">
                                     <div class="brand-text brand-big">
-                                        <span> @lang("Control.Nameincontrolone")
-                                        </span><strong>@lang('Control.Nameincontroltow')</strong>
+                                        <span> Hi-
+                                        </span><strong>Freelancer</strong>
                                     </div>
                                     <div class="brand-text brand-small">
-                                        <strong>@lang('Control.Shortcutname')</strong>
+                                        <strong>HF</strong>
                                     </div>
                                 </a>
                                 <!-- Toggle Button-->
@@ -225,9 +225,9 @@
                             <!-- Navbar Menu -->
                             <ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
                                 <!-- Search-->
-                                <li class="nav-item d-flex align-items-center"><a id="search" href="#"><i
-                                            class="icon-search"></i></a></li>
-                                <!-- Notifications-->
+                                <li class="nav-item d-flex align-items-center"><a  href="#"> {{ Auth::user()->money }} <i
+                                            class="fa fa-money"></i></a></li>
+                                <!--
                                 <li class="nav-item dropdown"><a id="notifications" rel="nofollow" data-target="#"
                                         href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                                         class="nav-link"><i class="fa fa-bell-o"></i><span
@@ -278,8 +278,8 @@
                                                 class="dropdown-item all-notifications text-center"> <strong>view
                                                     all notifications </strong></a></li>
                                     </ul>
-                                </li>
-                                <!-- Messages                        -->
+                                </li>Notifications-->
+                                <!--
                                 <li class="nav-item dropdown"><a id="messages" rel="nofollow" data-target="#" href="#"
                                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                                         class="nav-link"><i class="fa fa-envelope-o"></i><span
@@ -319,7 +319,7 @@
                                                 class="dropdown-item all-notifications text-center"> <strong>Read
                                                     all messages </strong></a></li>
                                     </ul>
-                                </li>
+                                </li>Messages                        -->
                                 <!-- Languages dropdown
 							<li class="nav-item dropdown">
                             <a id="languages" rel="follow"
@@ -399,7 +399,7 @@
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="col-sm-6">
-                                    <p> High Tech Freelancer &copy;2018-{{date("Y")}}</p>
+                                    <p> High Tech Freelancer &copy;@if("2020"!=date("Y"))2020-@endif{{date("Y")}}</p>
                                 </div>
                                 <div class="col-sm-6 text-right">
                                     <p>

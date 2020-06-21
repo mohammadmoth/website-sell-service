@@ -18,6 +18,8 @@
         <p></p>
 
         <div class="card-body">
+            <div> <label class="form-control-label" style="
+                font-size: large;"> You Have Money On You Account : {{ Auth::user()->money }} </label></div>
             @if (count($allProjects)!=0)
             @foreach ($allProjects as $project)
             @if ( $project->isfinsh)
@@ -48,36 +50,48 @@
 
         <div class="card-body">
 
+        <form action="{{route("PurchaseItem")}}" method="get">
 
-                @csrf
                 <div class="form-group col-md-6 ">
-                    <label for="items_id">Select Items</label>
-
-                    <select id='items_id' class="form-control input-material" name="items_id" required>
-                    </select>
-
-                </div>
-                <div class="form-group col-md-6 ">
-                    <div class=" form-row">  <button class="btn btn-danger">Add money</button>
-
-                </div>
-
-
-                    <a href="/#PricingPlan"> Read More about Items . click here</a>
-                </div>
 
 
 
+                    <div class="form-group"> <label for="items_id">Select Items </label>
+                        <div class="input-group">
 
-                    <div class=" form-row">
+                            <select id='items_id' class="form-control input-material" name="items_id" required>
+                                @foreach ($items as $item )
+                                <option value="{{ $item->id }}"> {{ $item->name}}</option>
+                                @endforeach
 
-
-
-                                <!-- Used to display Element errors. -->
-                                <div id="card-errors" role="alert"></div>
+                            </select>
+                            <div class="input-group-append">
+                                <button type="submit" class="btn btn-primary" onclick="openitem()">Select</button>
                             </div>
 
-                            <button class="btn btn-danger">Add money</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div class="form-group col-md-6 ">
+
+
+
+                <a href="/#PricingPlan"> Read More about Items . click here</a>
+            </div>
+
+
+
+
+            <div class=" form-row">
+
+
+
+                <!-- Used to display Element errors. -->
+                <div id="card-errors" role="alert"></div>
+            </div>
+
+            <button class="btn btn-danger">Add money</button>
 
         </div>
 
@@ -92,7 +106,9 @@
 
 
 <script>
+    function openitem(params) {
 
+}
 
 
 </script>

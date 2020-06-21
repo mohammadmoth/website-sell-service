@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!–– This Code was written By mgi.x.mgi@gmail.com you need information ,send msg ! ––>
+
     <html lang="{{ app()->getLocale() }}" @if(app()->
     getLocale() =="ar")dir="rtl" @endif >
 
@@ -55,8 +55,8 @@
             <div class="container" style="
       display: contents;
   ">
-                <a class="navbar-brand js-scroll-trigger" href="#page-top">@lang('Control.Nameincontrolone')
-                    <strong>@lang('Control.Nameincontroltow')</strong></a>
+                <a class="navbar-brand js-scroll-trigger" href="#page-top">High
+                    <strong>Tech</strong></a>
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
                     data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
                     aria-label="Toggle navigation">
@@ -443,7 +443,7 @@
                     <div class="col-lg-4 mr-auto text-center">
                         <i class="fa fa-envelope-o fa-3x mb-3 sr-contact"></i>
                         <p>
-                            <a href="mailto:it-softsolutions.com">CEO@it-softsolutions.com</a>
+                            <a href="mailto:hi-freelancer.com">CEO@hi-freelancer.com</a>
                         </p>
                     </div>
                 </div>

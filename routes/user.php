@@ -23,4 +23,11 @@ Route::middleware('langconfing')->group(function () {
     Route::get('/PurchaseItem', 'NormalUserController@PurchaseItem')->name('PurchaseItem');
 
 
+
+
+    Route::get('/Invoices', 'NormalUserController@Invoices')->name('Invoices');
+
+
+
+
 });
