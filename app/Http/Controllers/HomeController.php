@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Auth\Auth;
+use App\Items;
 use App\Project;
 use App\User;
 use Illuminate\Support\Facades\Validator;
@@ -28,7 +29,10 @@ class HomeController extends Controller
     public function index()
     {
         $allProjects = Project::where("users_id", Auth::id())->get();
-        return view('home')->with("allProjects",   $allProjects );
+        $items = Items::all();
+        return view('home')
+            ->with("allProjects",   $allProjects)
+            ->with("items", $items);
     }
 
     /**

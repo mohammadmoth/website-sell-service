@@ -32,6 +32,15 @@ class Auth extends vvv
         else
             return TRUE;
     }
+    public  static function isNormalUser()
+    {
+        $auth =  User::where('plan_id', '0')->where('id', Auth::id())->first();
+
+        if ($auth == null)
+            return FALSE;
+        else
+            return TRUE;
+    }
     public static function  emailisconfig($request)
     {
 

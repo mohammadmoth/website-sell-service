@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Auth\Auth as AuthAuth;
+use App\Invoices;
+use App\InvoicesItems;
 use App\Items;
 use App\Project;
 use App\Transfers;
@@ -20,6 +22,7 @@ class NormalUserController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('isuser');
     }
 
 
@@ -205,22 +208,62 @@ class NormalUserController extends Controller
         $validator = Validator::make(
             $request->all(),
             [
-                'id' => 'required',
+                'items_id' => 'required',
 
             ]
         );
 
         if ($validator->passes()) {
-            $Items =   Items::where("id", $request->id)->first();
-            if (   $Items == null)
-            {
+            $item  =   Items::where("id", $request->items_id)->first();
+            if ($item  == null) {
 
                 return redirect("/404");
             }
-            return view("UserControl.Users.InvoiceSystem.PurchaseItem");
-
+            return view("UserControl.Users.InvoiceSystem.PurchaseItem")->with("item", $item);
         } else {
             return redirect("/404");
         }
+    }
+    /**
+     *
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function itemInvoices($Invoices_id, Request $request)
+    {
+        $request->Invoices_id = $Invoices_id;
+
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'Invoices_id' => 'required',
+
+            ]
+        );
+
+        if ($validator->passes()) {
+            $Invoices  =   Invoices::where("id", $request->Invoices_id)->first();
+            $Invoices->items  =   InvoicesItems::where("invoices_id", $request->Invoices_id)->get();
+            if ($Invoices  == null) {
+
+                return redirect("/404");
+            }
+            return view("UserControl.Users.InvoiceSystem.itemInvoices")->with("Invoices", $Invoices);
+        } else {
+            return redirect("/404");
+        }
+    }
+    /**
+     *
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function Invoices(Request $request)
+    {
+
+        return view("UserControl.Users.Invoices")
+            ->with(
+                "itemsInvoice",
+                Invoices::where("users_id", AuthAuth::id())->get());
     }
 }
