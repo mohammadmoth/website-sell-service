@@ -12,18 +12,18 @@
     <div class="card">
 
         <div class="card-header d-flex align-items-center">
-            <h3 class="h4 whitefont  ">Purchase Item</h3>
+            <h3 class="h4 whitefont  ">Invoice Item</h3>
         </div>
         <p></p>
         <div class="card-body">
             <div class="tab-content">
                 <div class="form-group row">
-
+                    <label class="col-sm-3 form-control-label"></label>
                     <div class="col-sm-9">
                         <div class="form-group">
                             <div class="input-group">
                                 <p>
-                                     Name : {{$item->name}}
+                                    Itme Name : {{$item->name}}
                                 </p>
 
                             </div>
@@ -33,7 +33,7 @@
                         <div class="form-group">
                             <div class="input-group">
                                 <p>
-                                     Decrption : {{$item->deceptionsLong}}
+                                    Itme Decrption : {{$item->Decrption}}
                                 </p>
                             </div>
                         </div>
@@ -43,7 +43,7 @@
                             <div class="input-group">
 
                                 <p>
-                                     Cost : {{$item->cost}}
+                                    Itme Cost : {{$item->Cost}}
                                 </p>
 
                             </div>
@@ -53,15 +53,15 @@
                         <div class="form-group">
                             <div class="input-group">
 
-                                <div class="d-flex flex-row-reverse"> <input type="button" onclick="PURCHASE()"
-                                        value="PURCHASE NOW" id="PURCHASE" class="btn btn-success"></div>
+                                <div class="d-flex flex-row-reverse"> <input type="button"
+                                        onclick="PURCHASE({{$item->id}})" value="PURCHASE NOW" id="PURCHASE"
+                                        class="btn btn-success"></div>
 
 
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
@@ -79,8 +79,10 @@
 
 
 <script>
-//TODO تحقق من رصيد
-//TODO في حال عدم وجود رصيد يقوم بدفع
-//TODO في حال وجود رصيد يقوم بقبول الطلب
+    function PURCHASE(id) {
+
+
+
+}
 
 @endsection
