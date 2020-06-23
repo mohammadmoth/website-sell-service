@@ -85,12 +85,12 @@ trait AuthenticatesUsers
     {
         $userx = User::where("email", $request->input($this->username()))->first();
         if ($userx) {
-            if ($userx->status == 0)
+          //  if ($userx->status == 0)
                 return $this->guard()->attempt(
                     $this->credentials($request),
                     $request->filled('remember')
                 );
-        }
+       }
         return false;
     }
 
