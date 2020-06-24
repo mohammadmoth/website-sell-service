@@ -21,11 +21,13 @@
             <div> <label class="form-control-label" style="
                 font-size: large;"> You Have Money On You Account : {{ Auth::user()->money }} </label></div>
             @if (count($allProjects)!=0)
+            <div> <label class="form-control-label" style="font-size: large;">My Projects :</label></div>
             @foreach ($allProjects as $project)
             @if ( $project->isfinsh)
             @continue
             @endif
-            <div> <label class="form-control-label" style="font-size: large;"> {{ $project->name }} : </label></div>
+            <div> <label class="form-control-label" style="font-size: large;"><a
+                        href="{{route("showallprojects")}}">{{ $project->name }} </a></label></div>
 
             @endforeach
             @else
@@ -50,7 +52,7 @@
 
         <div class="card-body">
 
-        <form action="{{route("PurchaseItem")}}" method="get">
+            <form action="{{route("PurchaseItem")}}" method="get">
 
                 <div class="form-group col-md-6 ">
 

@@ -4,7 +4,7 @@
         <div class="form-group">
             <div class="input-group">
 
-                <div class="d-flex flex-row-reverse"> <input type="button" onclick="RemoveMyproject({{$project->id}})"
+                <div class="d-flex flex-row-reverse"> <input @if ( !$project->isfinsh )disabled @endif type="button" onclick="RemoveMyproject({{$project->id}})"
                         value="Remove My project" id="RemoveMyprojectX" class="btn btn-danger"></div>
 
 

@@ -30,7 +30,7 @@
 
                         <input @if ( $project->isfinsh )disabled @endif id="file" name="file[]" type="file"
                         accept=".jpg, .jpeg, .png" multiple
-                        onchange="Uploadfile()" class="form-control-file">
+                        onchange="Uploadfile(this,{{$project->id}})" class="form-control-file">
 
                     </div>
                 </div>

@@ -7,5 +7,8 @@
         </a></li>
         <li class="@yield('Invoices')"><a href="{{route('Invoices')}}"> <i class="fa fa-file-word-o"></i>Invoices
         </a></li>
+        <li class="@yield('AddMoney')"><a href="{{route('ViewAddMoney')}}"> <i class="fa fa-money"></i> Add Money
+        </a></li>
+
 
 </ul>

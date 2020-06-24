@@ -11,6 +11,7 @@ use App\Project;
 use App\Transfers;
 use App\User;
 use Illuminate\Support\Facades\Validator;
+use stdClass;
 
 class NormalUserController extends Controller
 {
@@ -49,8 +50,16 @@ class NormalUserController extends Controller
 
             foreach ($files as $file) {
 
+                $filename = $file->getClientOriginalName();
+                ChangeName: if (!empty($filesPath[$filename])) {
 
-                $filesPath[$file->getClientOriginalName()] =  $file->store("public/FilesUsers");
+
+                    $filename = rand(0, 1000) . "_" . $filename;
+                    goto ChangeName;
+                }
+
+
+                $filesPath[$filename] =  $file->store("public/FilesUsers");
             }
             $project->filespath = json_encode($filesPath);
 
@@ -67,7 +76,46 @@ class NormalUserController extends Controller
             ], 400);
         }
     }
+    /**
+     * Save Projects API
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function saveproject(Request $request)
+    {
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'id' => 'required',
+                'usernotes' => 'nullable',
+                'devnotes' => 'nullable',
+            ]
+        );
 
+        if ($validator->passes()) {
+
+            $project = Project::where("id", $request->id)->first(); //TODO confirm the project owner user
+
+            $data = json_decode($project->json);
+            if (!is_object($data)) {
+                $data = new stdClass();
+            }
+            $data->devnotes = $request->devnotes;
+            $data->usernotes = $request->usernotes;
+            $project->json = json_encode($data);
+            $project->save();
+
+            return response()->json([
+                'error' => 0
+            ]);
+        } else {
+            return response()->json([
+                'error' => 1,
+                'data' => $validator->errors()
+                    ->all()
+            ], 400);
+        }
+    }
 
     /**
      * Updating Projects API
@@ -130,13 +178,13 @@ class NormalUserController extends Controller
         );
 
         if ($validator->passes()) {
-            $porject =    Project::where("id", $request->idprject)->first();
+            $porject =    Project::where("id", $request->id)->first();
             if ($porject->isfinsh)
-                Project::where("id", $request->idprject)->delete();
+                Project::where("id", $request->id)->delete();
             else
                 return response()->json([
                     'error' => 1,
-                    'data' => ["the project is not isfinsh "]
+                    'data' => ["the project have not finish"]
 
                 ]);
 
@@ -151,6 +199,21 @@ class NormalUserController extends Controller
                     ->all()
             ], 400);
         }
+    }
+    /**
+     * View page add money
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function ViewAddMoney(Request $request)
+    {
+
+        $money = $request->money;
+        if (!is_numeric($money))
+            $money = 100;
+
+
+        return view("UserControl.Users.InvoiceSystem.AddMoney")->with("money", $money);
     }
     /**
      * end project api
@@ -168,10 +231,17 @@ class NormalUserController extends Controller
         );
 
         if ($validator->passes()) {
-            $project =   Project::where("id", $request->idprject)->first();
+            $project =   Project::where("id", $request->id)->first();
             $project->isfinsh = true;
             $cost =  $project->cost;
             $user = AuthAuth::user();
+            if ($project->freelancer_id == 0) {
+                return response()->json([
+                    'error' => 1,
+                    'data' => ["No Freelancer Working on this project", "Please contact with us"]
+
+                ]);
+            }
             $user_Touser = User::where("id",  $project->freelancer_id)->first();
             $user_Touser->money += $cost;
             $user->money -= $cost;
@@ -258,12 +328,103 @@ class NormalUserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function purchaseapi(Request $request)
+    {
+
+
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'id' => 'required',
+
+            ]
+        );
+
+        if ($validator->passes()) {
+            $items  =   Items::where("id", $request->id)->first(); //         "name", 'deceptions', 'deceptionsLong', 'image', 'cost'
+            $user = AuthAuth::user();
+            if ($user->money < $items->cost) {
+
+                //TODO اضافة مشروع للمستخدم
+                //TODO اضافة فاتورة
+                $project = new Project(); //   "users_id", 'name', 'json',  'filespath', "isfinsh", "cost", "freelancer_id"
+
+                $project->users_id = $user->id;
+                $project->name = $items->name;
+                $project->json = "[]";
+                $project->filespath = "[]";
+                $project->isfinsh = false;
+                $project->cost = $items->cost;
+                $project->freelancer_id = 0;
+
+
+                $Invoices = new Invoices(); //   "users_id", 'deceptions', 'cost'
+                $Invoices->users_id = $user->id;
+                $Invoices->deceptions = $items->deceptions;
+                $Invoices->cost = $items->cost;
+                $Invoices->save();
+
+                $InvoicesItems = new InvoicesItems(); //   "invoices_id", 'cost', 'items_id', "count", "deceptions"
+                $InvoicesItems->invoices_id   = $Invoices->id;
+                $InvoicesItems->cost = $items->cost;
+                $InvoicesItems->items_id = $items->id;
+                $InvoicesItems->count = 1;
+                $InvoicesItems->deceptions = $items->deceptions;
+                $InvoicesItems->save();
+
+                $user->money -= $items->cost;
+                $project->save();
+                $user->save();
+
+                return response()->json([
+                    'error' => 0
+                ]);
+            }
+        } else {
+            return response()->json([
+                'error' => 1,
+                'data' => $validator->errors()
+                    ->all()
+            ]);
+        }
+    }
+    /**
+     *
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function Invoices(Request $request)
     {
+        $invs =     Invoices::where("users_id", AuthAuth::id())->get();
+        foreach ($invs  as $inv) {
+            $inv->items = InvoicesItems::where("invoices_id", $inv->id)->get();
+            $inv->items[0]->item =  Items::where("id", $inv->items[0]->items_id)->first();
+        }
 
         return view("UserControl.Users.Invoices")
             ->with(
                 "itemsInvoice",
-                Invoices::where("users_id", AuthAuth::id())->get());
+                $invs
+
+            );
+    }
+    /**
+     *
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function CheckOut(Request $request)
+    {
+        Twocheckout::username('testlibraryapi901248204');
+        Twocheckout::password('testlibraryapi901248204PASS');
+
+
+        $params = array(
+            'sid' => '1817037',
+            'mode' => '2CO',
+            'li_0_name' => 'Test Product',
+            'li_0_price' => '0.01'
+        );
+        Twocheckout_Charge::form($params, 'auto');
     }
 }

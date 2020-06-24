@@ -5,7 +5,7 @@
             <div class="input-group">
 
 
-                    <textarea @if ( $project->isfinsh )disabled @endif type="text" id="usernotes"  rows="5"  class="form-control"></textarea>
+                    <textarea @if ( $project->isfinsh )disabled @endif type="text" id="usernotes" name="usernotes"   rows="5"  class="form-control">@if(isset($project->data->usernotes)){{$project->data->usernotes}}@endif</textarea>
 
             </div>
         </div>
