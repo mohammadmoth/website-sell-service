@@ -32,9 +32,10 @@
                         @foreach ( $itemsInvoice as $Invoice )
                         <tr>
                             <td>{{$Invoice->id}}</td>
-                            <td>{{$Invoice->Name}}</td>
-                            <td>{{$Invoice->Cost}}</td>
-                            <td><a href="{{route("itemInvoices")}}/{{$Invoice->id}}"></td>
+
+                            <td>{{$Invoice->items[0]->item->name}}</td>
+                            <td>{{$Invoice->cost}}</td>
+                            <td><a href="{{route("itemInvoices")}}/{{$Invoice->id}}"> See Invoice </a></td>
                         </tr>
                         @endforeach
                     </span>

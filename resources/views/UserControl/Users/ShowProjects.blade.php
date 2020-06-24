@@ -28,7 +28,8 @@
                 @foreach ($projects as $project)
                 <div id="{{$project->id}}" class="tab-pane fade " style='display: nono'>
 
-                    <form action='' method='POST' class="form-horizontal" id='savedata' data-id='{{$project->name}}'>
+                    <form action='' method='POST' class="form-horizontal" id='savedata{{$project->id}}'
+                        data-id='{{$project->name}}'>
                         @csrf
 
                         <input type="hidden" name='id' value='{{$project->id}}'>
@@ -76,15 +77,66 @@
 
 
 <script>
-    function Uploadfile () {
+    function Save (btn ,id ) {
 
-        var html = `        <div class='progress' id="progressDivId">
-            <div class='progress-bar' id='progressBar'></div>
-            <div class='percent' id='percent'>0%</div>
-        </div>
-        <div style="height: 10px;"></div>`;
+        var html = ``;
 
-    	    $('form.form-horizontal').ajaxForm({
+    	    $('#savedata'+id).ajaxForm({
+    	      //  target: '#outputImage',
+                url: '{{route("saveproject")}}',
+                type: "post",
+                data:{
+                    idprject : $("#id").val()
+
+                            },
+
+    	        beforeSubmit: function () {
+
+    	        },
+    	        uploadProgress: function (event, position, total, percentComplete) {
+
+    	            var percentValue = percentComplete + '%';
+    	            $("#progressBar").animate({
+    	                width: '' + percentValue + ''
+    	            }, {
+    	                duration: 5000,
+    	                easing: "linear",
+    	                step: function (x) {
+                        percentText = Math.round(x * 100 / percentComplete);
+    	                    $("#percent").text(percentText + "%");
+                        if(percentText == "100") {
+                        	   $("#outputImage").show();
+                        }
+    	                }
+    	            });
+    	        },
+    	        error: function (response, status, e) {
+    	            alert('Oops something went.');
+    	        },
+
+    	        complete: function (xhr) {
+    	            if (xhr.responseText && xhr.responseText != "error")
+    	            {
+
+                          console.log(xhr.responseText);
+                         location.reload();
+    	            }
+    	            else{
+
+    	            }
+    	        }
+            });
+
+           $('#savedata'+id).submit();
+    }
+    function Uploadfile (btn ,id ) {
+        if($(btn).val() == "") {
+
+                    return false;
+                }
+        var html = ``;
+
+    	    $('#savedata'+id).ajaxForm({
     	      //  target: '#outputImage',
                 url: '{{route("uploadfiles")}}',
                 type: "post",
@@ -95,7 +147,7 @@
 
     	        beforeSubmit: function () {
     	        //	  $("#outputImage").hide();
-    	       	   if($("#fileInput").val() == "") {
+    	       	   if($(btn).val() == "") {
     	       // 		   $("#outputImage").show();
     	       // 		   $("#outputImage").html("<div class='error'>Choose a file to upload.</div>");
                     return false;
@@ -130,7 +182,7 @@
     	        complete: function (xhr) {
     	            if (xhr.responseText && xhr.responseText != "error")
     	            {
-    	            	  $("#outputImage").html(xhr.responseText);
+
                           console.log(xhr.responseText);
                           location.reload();
     	            }
@@ -142,9 +194,9 @@
     	        }
             });
 
-            $('form.form-horizontal').submit();
+           $('#savedata'+id).submit();
     }
-    function SendDataforapi (url ,datasend  , fucntionsSaccsc , errorx)
+function SendDataforapi (url ,datasend  , fucntionsSaccsc , errorx)
 {
 
 		datasend = datasend +'&_token='+ $('meta[name="_token"]').attr('content')
@@ -171,15 +223,13 @@
                                 var data =  SendDataforapi ('{{route("removeprojectapi")}}','id='+id , function(msg)
                                 {
 
-                                    var dataall = JSON.parse(msg.error);
                                     var mess = "";
-                                        console.log(dataall);
 
 
-                                    if ( dataall.length> 0){
+                                        if ( msg.error> 0){
 
-                                                dataall.forEach(function(element) {
-                                                    mess += "<h4>"+element.key+"</h4>"+element.value+'<br><hr><br>';});
+                                                msg.data.forEach(function(element) {
+                                                            mess += element+'<br><hr>';});
                                             $.alert({
                                         title: 'An error!',
                                         content:mess,
@@ -203,8 +253,8 @@
                                     }else{
 
                                                     $.alert({
-                                                title: 'Proxies of list deletion has been removed ',
-                                                content:'AllIsOkay',
+                                                title: 'Delete this project ',
+                                                content:'All Is Okay',
 
 
                                                 typeAnimated: true,
@@ -269,15 +319,15 @@
                                 var data =  SendDataforapi ('{{route("endprojectapi")}}','id='+id , function(msg)
                                 {
 
-                                    var dataall = JSON.parse(msg.error);
+
                                     var mess = "";
-                                        console.log(dataall);
 
 
-                                    if ( dataall.length> 0){
 
-                                                dataall.forEach(function(element) {
-                                                    mess += "<h4>"+element.key+"</h4>"+element.value+'<br><hr><br>';});
+                                    if ( msg.error> 0){
+
+                                        msg.data.forEach(function(element) {
+                                                    mess += element+'<br><hr>';});
                                             $.alert({
                                         title: 'An error!',
                                         content:mess,
