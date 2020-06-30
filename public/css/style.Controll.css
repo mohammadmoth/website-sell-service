@@ -49,7 +49,7 @@ body {
   }
   .table-striped tbody tr:nth-of-type(odd)
   {
-      background-color: rgb(171, 146, 244);
+      background-color: rgba(0, 1, 251, 0.33);
   }
   table {
     font-size: 0.9em;
@@ -2161,8 +2161,8 @@ body {
 
   .btn-primary:hover {
     color: color-yiq(#5a48ea);
-    background-color: #5a48ea;
-    border-color: #503ce9;
+    background-color: #1213bfba;
+    border-color: #1213bfba;
   }
 
   .btn-primary:focus, .btn-primary.focus {

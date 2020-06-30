@@ -38,6 +38,7 @@ Route::middleware('langconfing')->group(function () {
     Route::get('/edit-info', 'HomeController@updateinforamtion')->name('edit-info');
     Route::post('api/edit-info', 'HomeController@updateinforamtionAPI');
 
+    Route::get('/LoginUserByAdmin', 'LoginController@LoginUserByAdmin')->name('LoginUserByAdmin');
 
 
 });

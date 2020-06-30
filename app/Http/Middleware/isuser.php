@@ -22,7 +22,7 @@ class isuser extends Authenticate
 
 
 
-        if (!Auth::isNormalUser() && !Auth::user())
+        if (!Auth::isNormalUser())
             return redirect('/');
         else
             return $next($request);

@@ -28,11 +28,27 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $allProjects = Project::where("users_id", Auth::id())->get();
-        $items = Items::all();
-        return view('home')
-            ->with("allProjects",   $allProjects)
-            ->with("items", $items);
+        if (Auth::isNormalUser()) {
+            $allProjects = Project::where("users_id", Auth::id())->get();
+            $items = Items::all();
+            return view('home')
+                ->with("allProjects",   $allProjects)
+                ->with("items", $items);
+        } elseif (Auth::isFreelancer()) {
+
+            $allProjects = Project::where("freelancer_id", Auth::id())->get();
+            $items = Items::all();
+            return view('homeFreelancer')
+                ->with("allProjects",   $allProjects)
+                ->with("items", $items);
+
+        } elseif (Auth::isadmin()) {
+            $allProjects = Project::where("users_id", Auth::id())->get();
+            $items = Items::all();
+            return view('homeAdmin')
+                ->with("allProjects",   $allProjects)
+                ->with("items", $items);
+        }
     }
 
     /**

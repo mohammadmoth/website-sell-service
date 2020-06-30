@@ -18,7 +18,7 @@ class admin extends Authenticate
      */
     public function handle($request, Closure $next, ...$guards)
     {
-        $this->authenticate($guards);
+
 
 
         if (!Auth::isadmin() )

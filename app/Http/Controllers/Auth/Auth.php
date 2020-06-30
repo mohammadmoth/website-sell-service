@@ -8,9 +8,12 @@ use App\plans;
 
 class Auth extends vvv
 {
+    public const USER_ID = 0;
+    public const ADMIN_ID = 1;
+    public const FREELANCER_ID = 2;
     public  static function isadmin()
     {
-        $auth =  User::where('plan_id', '1')->where('id', Auth::id())->first();
+        $auth =  User::where('plan_id', self::ADMIN_ID)->where('id', Auth::id())->first();
 
         if ($auth == null)
             return FALSE;
@@ -25,7 +28,7 @@ class Auth extends vvv
     }
     public  static function isFreelancer()
     {
-        $auth =  User::where('plan_id', '2')->where('id', Auth::id())->first();
+        $auth =  User::where('plan_id', self::FREELANCER_ID)->where('id', Auth::id())->first();
 
         if ($auth == null)
             return FALSE;
@@ -34,7 +37,7 @@ class Auth extends vvv
     }
     public  static function isNormalUser()
     {
-        $auth =  User::where('plan_id', '0')->where('id', Auth::id())->first();
+        $auth =  User::where('plan_id', self::USER_ID)->where('id', Auth::id())->first();
 
         if ($auth == null)
             return FALSE;

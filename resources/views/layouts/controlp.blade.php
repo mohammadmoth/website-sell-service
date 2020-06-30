@@ -225,7 +225,7 @@
                             <!-- Navbar Menu -->
                             <ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
                                 <!-- Search-->
-                                <li class="nav-item d-flex align-items-center"><a  href="#"> {{ Auth::user()->money }} <i
+                                <li class="nav-item d-flex align-items-center"><a href="#"> {{ Auth::user()->money }} <i
                                             class="fa fa-money"></i></a></li>
                                 <!--
                                 <li class="nav-item dropdown"><a id="notifications" rel="nofollow" data-target="#"
@@ -381,8 +381,10 @@
 
                     @if (auth::isadmin() )
                     @include('layouts.ListAdmin')
-                    @elseif (!auth::isadmin()  )
+                    @elseif (auth::isNormalUser() )
                     @include('layouts.ListUser')
+                    @elseif (auth::isFreelancer() )
+                    @include('layouts.ListFreelincer')
                     @endif
                 </nav>
                 <div class="content-inner">

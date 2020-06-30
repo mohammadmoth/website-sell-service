@@ -12,5 +12,6 @@
 */
 Route::middleware('langconfing')->group(function () {
 
-
+    Route::post('/api/freelancer/users/login', 'FreelancerController@APIFreelancerLogin')
+        ->name('APIFreelancerLogin');
 });

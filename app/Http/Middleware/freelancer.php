@@ -19,7 +19,7 @@ class freelancer extends Authenticate
      */
     public function handle($request, Closure $next, ...$guards)
     {
-        $this->authenticate($guards);
+
 
 
         if (!Auth::isFreelancer())
