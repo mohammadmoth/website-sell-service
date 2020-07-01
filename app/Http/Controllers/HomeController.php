@@ -8,6 +8,7 @@ use App\Items;
 use App\Project;
 use App\User;
 use Illuminate\Support\Facades\Validator;
+use stdClass;
 
 class HomeController extends Controller
 {
@@ -41,13 +42,23 @@ class HomeController extends Controller
             return view('homeFreelancer')
                 ->with("allProjects",   $allProjects)
                 ->with("items", $items);
-
         } elseif (Auth::isadmin()) {
-            $allProjects = Project::where("users_id", Auth::id())->get();
-            $items = Items::all();
+            $arrayout = new stdClass();
+            $arrayout->TotalMoney = User::GetTotalMoney();
+
+            $arrayout->Withdrawal = User::GetWithdrawal();
+            $arrayout->UsersCount = User::GetUsersCount();
+
+            $arrayout->FreelancerCount = User::GetFreelancerCount();
+            $arrayout->TotalSpend = User::GetTotalSpend();
+            $arrayout->ProjectAtiveCount = Project::ProjectAtiveCount();
+
+            $arrayout->ProjectPending = Project::GetProjectPending();
+
+            $arrayout->allProjects = Project::where("users_id", Auth::id())->get();
+
             return view('homeAdmin')
-                ->with("allProjects",   $allProjects)
-                ->with("items", $items);
+                ->with("out", $arrayout);
         }
     }
 

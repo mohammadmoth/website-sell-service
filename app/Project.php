@@ -17,4 +17,13 @@ class Project extends Model
         "users_id", 'name', 'json',  'filespath', "isfinsh", "cost", "freelancer_id"
 
     ];
+
+    public static function ProjectAtiveCount()
+    {
+        return Project::where("isfinsh", false)->where("freelancer_id", "!=", null)->count();
+    }
+    public static function GetProjectPending()
+    {
+        return Project::where("freelancer_id", null)->count();
+    }
 }
