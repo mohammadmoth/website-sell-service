@@ -10,6 +10,7 @@ use App\Items;
 use App\Project;
 use App\Transfers;
 use App\User;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Validator;
 use stdClass;
 
@@ -342,8 +343,9 @@ class NormalUserController extends Controller
 
         if ($validator->passes()) {
             $items  =   Items::where("id", $request->id)->first(); //         "name", 'deceptions', 'deceptionsLong', 'image', 'cost'
+            $items->json = json_decode($items->json);
             $user = AuthAuth::user();
-            if ($user->money < $items->cost) {
+            if ($user->money - $user->moneyspins >= $items->cost) {
 
                 //TODO اضافة مشروع للمستخدم
                 //TODO اضافة فاتورة
@@ -379,13 +381,34 @@ class NormalUserController extends Controller
                 return response()->json([
                     'error' => 0
                 ]);
+            } else {
+                newnumber: $std = new stdClass();
+                $std->id = uniqid("pay_2checkout_");
+                if (Cache::has($std->id))
+                    goto newnumber;
+                $std->itemid = $items->id;
+                $std->userid = $user->id;
+
+
+                Cache::put($std->id, $std, now()->addDays(30));
+                if (!isset($items->json->idpay)) {
+                    return response()->json([
+                        'error' => 1,
+                        'data' => ["no id pay"]
+
+                    ], 400);
+                }
+                return response()->json([
+                    'error' => 2,
+                    'data' => ["id2checkout" => $items->json->idpay, "ref" => $std->id]
+                ]);
             }
         } else {
             return response()->json([
                 'error' => 1,
                 'data' => $validator->errors()
                     ->all()
-            ]);
+            ], 400);
         }
     }
     /**

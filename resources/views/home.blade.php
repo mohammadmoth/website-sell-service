@@ -63,7 +63,11 @@
 
                             <select id='items_id' class="form-control input-material" name="items_id" required>
                                 @foreach ($items as $item )
+                                <?php $item->json = json_decode($item->json);?>
+                                @if (isset($item->json->show) && $item->json->show)
+
                                 <option value="{{ $item->id }}"> {{ $item->name}}</option>
+                                @endif
                                 @endforeach
 
                             </select>
@@ -93,7 +97,7 @@
                 <div id="card-errors" role="alert"></div>
             </div>
 
-            <button class="btn btn-danger">Add money</button>
+
 
         </div>
 
@@ -108,7 +112,9 @@
 
 
 <script>
-    function openitem(params) {
+function openitem(params) {
+
+
 
 }
 

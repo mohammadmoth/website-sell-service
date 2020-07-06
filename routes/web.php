@@ -22,8 +22,11 @@ Route::middleware('langconfing')->group(function () {
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 
-    Route::get('/signupuser', 'Auth\RegisterController@signupNromalUser')->name('signupuser');
+    Route::get('/signupuser', 'Auth\RegisterController@signupNromalUser')
+        ->name('signupuser');
 
+    Route::post('/signupuser', 'Auth\RegisterController@signupNromalUserReg')
+        ->name('signupNromalUserReg');
 
 
 
@@ -39,6 +42,4 @@ Route::middleware('langconfing')->group(function () {
     Route::post('api/edit-info', 'HomeController@updateinforamtionAPI');
 
     Route::get('/LoginUserByAdmin', 'LoginController@LoginUserByAdmin')->name('LoginUserByAdmin');
-
-
 });

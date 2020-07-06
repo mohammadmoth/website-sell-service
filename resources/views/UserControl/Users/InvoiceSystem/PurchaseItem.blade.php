@@ -76,6 +76,7 @@
 @section('script')
 
 </script>
+<script src="https://secure.avangate.com/checkout/client/twoCoInlineCart.js" async> </script>
 
 
 
@@ -93,15 +94,20 @@
                                 var data =  SendDataforapi ('{{route("purchaseapi")}}','id='+id , function(msg)
                                 {
 
+/*
 
+
+
+
+*/
                                     var mess = "";
                                   //      console.log(dataall);
 
 
-                                    if ( msg.error> 0){
-
+                                    if ( msg.error== 1){
+                                        dataall = msg.data;
                                                 dataall.forEach(function(element) {
-                                                    mess += element+'<br><hr><br>';});
+                                                    mess += element+'<hr><br>';});
                                             $.alert({
                                         title: 'An error!',
                                         content:mess,
@@ -122,7 +128,83 @@
                                         }
                                         });
 
-                                    }else{
+                                    }
+                                    else if ( msg.error>= 2){
+                                        var setOrderExternalRef =msg.ref;
+
+
+                                        $.confirm({
+                                        title: 'You do\' have money on your account',
+                                        content: 'You must pay now to get this item , are you sure ?',
+                                        buttons: {
+                                            confirm:
+                                             function(){
+
+                                                    (function (document, src, libName, config) {
+                                                 /*       var script             = document.createElement('script');
+                                                        script.src             = src;
+                                                        script.async           = true;
+                                                        var firstScriptElement = document.getElementsByTagName('script')[0];*/
+
+                                                            for (var namespace in config) {
+                                                                if (config.hasOwnProperty(namespace)) {
+                                                                    window[libName].setup.setConfig(namespace, config[namespace]);
+                                                                }
+                                                            }
+
+                                                            window[libName].register();
+                                                            window[libName].cart.setOrderExternalRef(msg.data.ref);
+                                                            TwoCoInlineCart.products.add({ code: msg.data.id2checkout,quantity:1});
+
+                                                           /* TwoCoInlineCart.products.addMany([{
+                                                                                    type: 'PRODUCT',
+                                                                                    name: 'product 1',
+                                                                                    price: 10,
+                                                                                    tangible: true,
+                                                                                    quantity: 1,
+                                                                                    },
+                                                                                    {
+                                                                                        type: 'PRODUCT',
+                                                                                        name: 'product 2',
+                                                                                        price: 30,
+                                                                                        tangible: true,
+                                                                                        quantity: 1,
+                                                                                    } ] );*/
+                                                            TwoCoInlineCart.cart.checkout();
+                                                            TwoCoInlineCart.events.subscribe('payment:finalized', function () {
+                                                                $.alert({
+                                                                title: 'Thanks',
+                                                                content:'Thank You For Pay , We Will Send Emails informaion',
+                                                            typeAnimated: true,
+                                                            buttons: {
+                                                            tryAgain: {
+                                                                rtl: true,
+                                                                text: 'Ok',
+                                                                btnClass: 'btn',
+                                                                action: function(){
+                                                                   // bntname.prop("disabled",false);
+                                                                    window.location.href = '{{route("Invoices")}}'
+                                                                }
+                                                            }
+                                                         }
+                                                              });
+                                                            });
+
+
+
+                                                       // firstScriptElement.parentNode.insertBefore(script, firstScriptElement);
+                                                    })(document, 'https://secure.avangate.com/checkout/client/twoCoInlineCart.js',
+                                                    'TwoCoInlineCart',{"app":{"merchant":"250272971171","iframeLoad":"checkout"}
+                                                    ,"cart":{"host":"https:\/\/secure.2checkout.com","customization":"inline"}});
+                                                    bntname.prop("disabled",false);
+
+                                            } , cancel: function () {
+                                                bntname.prop("disabled",false);
+                                                        }
+                                            }
+                                    });
+                                    }
+                                    else{
 
                                                     $.alert({
                                                 title: 'Item Purchased ',
@@ -147,24 +229,25 @@
                                 }
                                 , function (error){
 
-                                    $.alert({
-                                        title: 'An error!',
-                                        content:"Error on Server Or Your Connction",
-                                        typeAnimated: true,
-                                        buttons: {
-                                        tryAgain: {
-                                            rtl: true,
-                                            text: 'Ok',
-                                            btnClass: 'btn',
-                                            action: function(){
-                                                bntname.prop("disabled",false);
+
+
+                                    var errors = "";
+                                    if ( "data" in error.responseJSON)
+                                        {
+                                            for (let index = 0; index < error.responseJSON.data.length; index++) {
+                                                errors += error.responseJSON.data[index] +"<br>";
+
                                             }
-                                        }
 
                                         }
-                                        });
-
-
+                                        else
+                                        errors = "error unknow !"
+                                    $.alert({
+                                                title: 'An Error ',
+                                            content: errors,
+                                                }
+                                );
+                                bntname.prop("disabled",false);
                                 }
                                 );
 

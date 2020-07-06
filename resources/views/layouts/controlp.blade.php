@@ -6,8 +6,9 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>@lang('Control.Title')</title>
-        <meta name="description" content="">
+        <meta name="description" content="Freelancer working online">
+        <meta name="author" content="it-softsolutions.com">
+        <title>High tech Freelanser</title>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="robots" content="all,follow">
         <meta name="_token" content="{{csrf_token()}}" />
@@ -372,7 +373,7 @@
                         </div>
                         <div class="title">
                             <h1 class="h4">{{Auth::user()->name}} </h1>
-                            <p>Type</p>
+                            <p>{{Auth::RetunTypeString()}}</p>
                         </div>
                     </div>
                     <!-- Sidebar Navidation Menus-->

@@ -27,7 +27,8 @@
             @continue
             @endif
             <div> <label class="form-control-label" style="font-size: large;"><a
-                       onclick="login({{$project->users_id}} ,{{$project->id}} )" href="#">{{ $project->name }} </a></label></div>
+                        onclick="login({{$project->users_id}} ,{{$project->id}} )" href="#">{{ $project->name }}
+                    </a></label></div>
 
             @endforeach
             @else
@@ -67,7 +68,10 @@
                 <div id="card-errors" role="alert"></div>
             </div>
 
-            <button class="btn btn-danger">Add money</button>
+            <a href="{{route("ViewGetMoneyFree")}}">
+
+                <button type="button" class="btn btn-danger" href="">Ask Your Money </button>
+            </a>
 
 
             @endif

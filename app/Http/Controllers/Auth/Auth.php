@@ -55,4 +55,20 @@ class Auth extends vvv
             return TRUE;
         return FALSE;
     }
+    public static function  RetunTypeString()
+    {
+        switch (Auth::user()->plan_id) {
+            case Auth::USER_ID:
+                return "User";
+
+            case Auth::FREELANCER_ID:
+                return "Freelancer";
+            case Auth::ADMIN_ID:
+                return "Admin";
+
+            default:
+                return "Unko!";
+                break;
+        }
+    }
 }

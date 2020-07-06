@@ -6,10 +6,10 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="description" content="">
-        <meta name="author" content="">
+        <meta name="description" content="Freelancer working online">
+        <meta name="author" content="it-softsolutions.com">
 
-        <title>@lang('Control.Title')</title>
+        <title>High tech Freelanser</title>
 
         <!-- Bootstrap core CSS -->
         @if(app()->getLocale() =="ar")

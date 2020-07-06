@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\User;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -61,13 +63,13 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\User
      */
-    protected function create(array $data)
+    protected function create(array $data, $idplan = Auth::FREELANCER_ID)
     {
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'plan_id' => 2,
+            'plan_id' => $idplan,
         ]);
     }
 
@@ -75,8 +77,23 @@ class RegisterController extends Controller
     public function signupNromalUser()
     {
         return view('auth.passwords.signupuser');
-
     }
 
+    /**
+     * Handle a registration request for the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function signupNromalUserReg(Request $request)
+    {
+        $this->validator($request->all())->validate();
 
+        event(new Registered($user = $this->create($request->all(), Auth::USER_ID)));
+
+        $this->guard()->login($user);
+
+        return $this->registered($request, $user)
+            ?: redirect($this->redirectPath());
+    }
 }

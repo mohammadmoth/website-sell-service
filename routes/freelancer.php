@@ -10,8 +10,25 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::middleware('langconfing')->group(function () {
+Route::middleware(['langconfing', 'freelancer'])->group(function () {
 
     Route::post('/api/freelancer/users/login', 'FreelancerController@APIFreelancerLogin')
         ->name('APIFreelancerLogin');
+
+
+    //      Route::get('/PurchaseItem', 'FreelancerController@PurchaseItem')->name('PurchaseItem');
+    //      Route::post('/api/purchaseapi', 'FreelancerController@purchaseapi')->name('purchaseapi');
+
+
+
+    Route::get('/InvoicesFree', 'FreelancerController@InvoicesFree')->name('InvoicesFree');
+
+
+
+
+    Route::get('/ViewGetMoneyFree', 'FreelancerController@ViewGetMoneyFree')->name('ViewGetMoneyFree');
+
+    Route::post('/api/AskMoneyFreel', 'FreelancerController@AskMoneyFreel')->name('AskMoneyFreel');
+
+
 });
