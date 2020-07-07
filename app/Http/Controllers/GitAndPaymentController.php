@@ -39,7 +39,7 @@ class GitAndPaymentController extends Controller
         if ($validator->passes()) {
 
 
-            $pass        = "2pK3%_ZyhWG&CE7[w^(z";    /* pass to compute HASH */
+            $pass        = env("2cackout");    /* pass to compute HASH */
             $result        = "";                 /* string for compute HASH for received data */
             $return        = "";                 /* string to compute HASH for return result */
             $signature    = $_POST["HASH"];    /* HASH received */
@@ -68,13 +68,13 @@ class GitAndPaymentController extends Controller
                 echo "<EPAYMENT>" . $date_return . "|" . $result_hash . "</EPAYMENT>";
                 /* Begin automated procedures (START YOUR CODE)*/
                 echo "REFNOEXT:" . $_POST["REFNOEXT"];
-                $details = [
-                    'email' => env("MAIL_ADMIN"),
-                    "data" => ["errors" => "Ok :" . $request->REFNOEXT, "code" => "002"],
-                    "view" => "Error",
-                    "subject" => "Pay Ok"
-                ];
-                SendEmailsJob::dispatch($details);
+
+                if (Cache::has($request->REFNOEXT) && $request->ORDERSTATUS == "COMPLETE" &&   !isset(Cache::get($request->REFNOEXT)->RunBefor)) {
+                    $d =    Cache::get($request->REFNOEXT);
+                    $d->RunBefor = true;
+                    Cache::put($request->REFNOEXT, $d, now()->addDays(30));
+                    AddProjectAndInvoice::dispatch($request->REFNOEXT);
+                }
             } else {
 
                 $details = [
@@ -87,26 +87,7 @@ class GitAndPaymentController extends Controller
             }
 
             /*
-            if (Cache::has($request->REFNOEXT) && $request->ORDERSTATUS == "COMPLETE" &&   !isset(Cache::get($request->REFNOEXT)->RunBefor)) {
-                $d =    Cache::get($request->REFNOEXT);
-                $d->RunBefor = true;
-                Cache::put($request->REFNOEXT, $d, now()->addDays(30));
 
-                echo "Verified OK!";
-
-
-                AddProjectAndInvoice::dispatch($request->REFNOEXT);
-            } else {
-
-                $details = [
-                    'email' => env("MAIL_ADMIN"),
-                    "data" => ["errors" => "Error :" . $request->REFNOEXT, "code" => "001"],
-                    "view" => "Error",
-                    "subject" => "Pay Error"
-                ];
-                SendEmailsJob::dispatch($details);
-                // Mail::to(env("MAIL_ADMIN"))->send(new SendConf($name));
-            }
             */
 
 
