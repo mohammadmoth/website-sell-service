@@ -42,7 +42,7 @@ class AddProjectAndInvoice implements ShouldQueue
     public function handle()
     {
 
-        if (Cache::has($this->key)) {
+        if (Cache::has($this->key) && !isset( Cache::get($this->key)->RunBefor) ) {
 
 
             $data =   Cache::get($this->key);
