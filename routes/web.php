@@ -59,7 +59,7 @@ Route::middleware('langconfing')->group(function () {
     Route::get('/LoginUserByAdmin', 'LoginController@LoginUserByAdmin')->name('LoginUserByAdmin');
 
     Route::post('/api/ipn', 'GitAndPaymentController@ipn');
-    Route::get('/api/ipn', 'GitAndPaymentController@ipn');
+  //  Route::get('/api/ipn', 'GitAndPaymentController@ipn');
 
 
 });
