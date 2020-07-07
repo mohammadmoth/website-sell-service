@@ -14,7 +14,7 @@ class AddJsonToItmes extends Migration
     public function up()
     {
         Schema::table('items', function (Blueprint $table) {
-            $table->longText("json")->default("[]");
+            $table->longText("json");
         });
     }
 
