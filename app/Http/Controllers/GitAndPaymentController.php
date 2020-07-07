@@ -69,8 +69,7 @@ class GitAndPaymentController extends Controller
                 /* Begin automated procedures (START YOUR CODE)*/
                 echo "REFNOEXT:" . $_POST["REFNOEXT"];
 
-                if (Cache::has($request->REFNOEXT) && $request->ORDERSTATUS == "COMPLETE" &&   !isset(Cache::get($request->REFNOEXT)->RunBefor)
-                ) {
+                if (Cache::has($request->REFNOEXT) && $request->ORDERSTATUS == "COMPLETE" &&   !isset(Cache::get($request->REFNOEXT)->RunBefor)) {
                     echo " Ok" . PHP_EOL;
 
                     $d =    Cache::get($request->REFNOEXT);
@@ -78,7 +77,13 @@ class GitAndPaymentController extends Controller
                     Cache::put($request->REFNOEXT, $d, now()->addDays(30));
                     AddProjectAndInvoice::dispatch($request->REFNOEXT);
                 } else {
-
+                    $details = [
+                        'email' => env("MAIL_ADMIN"),
+                        "data" => ["errors" => "Error :" . $request->REFNOEXT . " <br>Status :" . $request->ORDERSTATUS, "code" => "003"],
+                        "view" => "Error",
+                        "subject" => "Pay Error"
+                    ];
+                    SendEmailsJob::dispatch($details);
                     var_dump(Cache::get($request->REFNOEXT));
                 }
             } else {
