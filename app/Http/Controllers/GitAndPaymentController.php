@@ -9,6 +9,7 @@ use App\Jobs\SendConfJob;
 use App\Jobs\SendEmail;
 use App\Jobs\SendEmailsJob;
 use App\Mail\SendConf;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
@@ -35,48 +36,22 @@ class GitAndPaymentController extends Controller
             'IPN_PNAME' => 'required',
 
         ]);
-        if ($validator->passes()) {
+        if ($validator->passes() && $request->ORDERSTATUS == "COMPLETE") {
 
-            $pass        = "2pK3%_ZyhWG&CE7[w^(z";    /* pass to compute HASH */
-            $result        = "";                 /* string for compute HASH for received data */
-            $return        = "";                 /* string to compute HASH for return result */
-            $signature    = $request->input["HASH"];    /* HASH received */
-            $body        = "";
-            /* read info received */
-            ob_start();
-            foreach ($request->all() as $key => $val) {
-                // while (list($key, $val) = each($_POST)) {
-            //    $$key = $val;
-                /* get values */
-                if ($key != "HASH") {
-                    if (is_array($val)) $result .= $this->ArrayExpand($val);
-                    else {
-                        $size        = strlen(StripSlashes($val)); /*StripSlashes function to be used only for PHP versions <= PHP 5.3.0, only if the magic_quotes_gpc function is enabled */
-                        $result    .= $size . StripSlashes($val);  /*StripSlashes function to be used only for PHP versions <= PHP 5.3.0, only if the magic_quotes_gpc function is enabled */
-                    }
-                }
-            }
-            $body = ob_get_contents();
-            ob_end_flush();
-            $date_return = date("YmdHis");
-            $return = strlen($request->input["IPN_PID"][0]) . $request->input["IPN_PID"][0] . strlen($request->input["IPN_PNAME"][0]) . $request->input["IPN_PNAME"][0];
-            $return .= strlen($request->input["IPN_DATE"]) . $request->input["IPN_DATE"] . strlen($date_return) . $date_return;
-            $hash = $this->hmac($pass, $result); /* HASH for data received */
-            $body .= $result . "\r\n\r\nHash: " . $hash . "\r\n\r\nSignature: " . $signature . "\r\n\r\nReturnSTR: " . $return;
-            if ($hash == $signature) {
+            if (Cache::has($request->REFNOEXT) &&  !isset(Cache::get($request->REFNOEXT)->RunBefor)) {
+                $d =    Cache::get($request->REFNOEXT);
+                $d->RunBefor = true;
+                Cache::put($request->REFNOEXT, $d, now()->addDays(30));
+
                 echo "Verified OK!";
-                /* ePayment response */
-                $result_hash =   $this->hmac($pass, $return);
-                echo "<EPAYMENT>" . $date_return . "|" . $result_hash . "</EPAYMENT>";
-                /* Begin automated procedures (START YOUR CODE)*/
+
+
                 AddProjectAndInvoice::dispatch($request->REFNOEXT);
             } else {
-                echo $d= "Verified ERROR!";
-                $result_hash =   $this->hmac($pass, $return);
-                echo $d.= "<EPAYMENT>" . $date_return . "|" . $result_hash . "</EPAYMENT>";
+
                 $details = [
                     'email' => env("MAIL_ADMIN"),
-                    "data" => ["errors" => $d, "code" => "001"],
+                    "data" => ["errors" => "Error :" . $request->REFNOEXT, "code" => "001"],
                     "view" => "Error",
                     "subject" => "Pay Error"
                 ];
