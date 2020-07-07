@@ -46,7 +46,7 @@ class GitAndPaymentController extends Controller
             ob_start();
             foreach ($request->all() as $key => $val) {
                 // while (list($key, $val) = each($_POST)) {
-                $$key = $val;
+               // $$key = $val;
                 /* get values */
                 if ($key != "HASH") {
                     if (is_array($val)) $result .= $this->ArrayExpand($val);
