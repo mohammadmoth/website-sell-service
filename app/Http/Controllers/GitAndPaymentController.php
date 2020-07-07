@@ -79,7 +79,7 @@ class GitAndPaymentController extends Controller
                 } else {
                     $details = [
                         'email' => env("MAIL_ADMIN"),
-                        "data" => ["errors" => "Error :" . $request->REFNOEXT . " <br>Status :" . $request->ORDERSTATUS, "code" => "003"],
+                        "data" => ["errors" => "Error :" . $request->REFNOEXT . " Status :" . $request->ORDERSTATUS, "code" => "003"],
                         "view" => "Error",
                         "subject" => "Pay Error"
                     ];
