@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\Jobs\SendEmail;
+use App\Jobs\SendEmailsJob;
 use Illuminate\Console\Command;
 
 
@@ -41,10 +41,19 @@ class Test extends Command
     {
         $details = [
             'email' => 'mohmmad.m.othman@gmail.com',
-            'name' => "Mohammad",
-            'type' => "User"
+            "data" => ["errors" => "The pay Not working", "code" => "222"],
+            "view" => "Error",
+            "subject"=>"error Test"
         ];
-        SendEmail::dispatch($details);
+        $details = [
+           // 'email' => $user->email,
+           'email' => 'mohmmad.m.othman@gmail.com',
+           "data" => ["Moeny" => "300"],
+            "view" => "MoneyPending",
+            "subject" => "Payment Confirmed"
+        ];
+        SendEmailsJob::dispatch($details);
+
         //msf
 
 

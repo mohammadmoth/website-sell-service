@@ -7,9 +7,11 @@ use App\Http\Controllers\Auth\Auth as AuthAuth;
 use App\Invoices;
 use App\InvoicesItems;
 use App\Items;
+use App\Jobs\SendEmailsJob;
 use App\Project;
 use App\Transfers;
 use App\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Validator;
 use stdClass;
@@ -324,6 +326,35 @@ class NormalUserController extends Controller
             return redirect("/404");
         }
     }
+    /**
+     *
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function SendEmailConfPay(Request $request)
+    {
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'id' => 'required',
+
+            ]
+        );
+
+        if ($validator->passes() && Cache::has($request->id)) {
+            $money = Items::where("id", Cache::get($request->id)->itemid)->first()->cost;
+
+            $details = [
+                // 'email' => $user->email,
+                'email' => Auth::user()->email,
+                "data" => ["Moeny" => $money],
+                "view" => "MoneyPending",
+                "subject" => "Payment Confirmed"
+            ];
+            SendEmailsJob::dispatch($details);
+        }
+    }
+
     /**
      *
      *

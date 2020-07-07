@@ -94,7 +94,7 @@
                                 var data =  SendDataforapi ('{{route("purchaseapi")}}','id='+id , function(msg)
                                 {
 
-/*
+/*SendEmailConfPay
 
 
 
@@ -172,6 +172,7 @@
                                                                                     } ] );*/
                                                             TwoCoInlineCart.cart.checkout();
                                                             TwoCoInlineCart.events.subscribe('payment:finalized', function () {
+                                                                SendDataforapi('{{route("SendEmailConfPay")}}','id='+msg.data.ref ,function(){},function(){} );
                                                                 $.alert({
                                                                 title: 'Thanks',
                                                                 content:'Thank You For Pay , We Will Send Emails informaion',

@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Auth\Auth;
+use App\Jobs\AddProjectAndInvoice;
+use App\Jobs\SendConfJob;
+use App\Jobs\SendEmail;
+use App\Jobs\SendEmailsJob;
 use App\Mail\SendConf;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Mail;
@@ -36,11 +40,11 @@ class GitAndPaymentController extends Controller
             $pass        = "2pK3%_ZyhWG&CE7[w^(z";    /* pass to compute HASH */
             $result        = "";                 /* string for compute HASH for received data */
             $return        = "";                 /* string to compute HASH for return result */
-            $signature    = $validator->input["HASH"];    /* HASH received */
+            $signature    = $request->input["HASH"];    /* HASH received */
             $body        = "";
             /* read info received */
             ob_start();
-            while (list($key, $val) = each($validator->input)) {
+            while (list($key, $val) = each($request->input)) {
                 $$key = $val;
                 /* get values */
                 if ($key != "HASH") {
@@ -54,8 +58,8 @@ class GitAndPaymentController extends Controller
             $body = ob_get_contents();
             ob_end_flush();
             $date_return = date("YmdHis");
-            $return = strlen($validator->input["IPN_PID"][0]) . $validator->input["IPN_PID"][0] . strlen($validator->input["IPN_PNAME"][0]) . $validator->input["IPN_PNAME"][0];
-            $return .= strlen($validator->input["IPN_DATE"]) . $validator->input["IPN_DATE"] . strlen($date_return) . $date_return;
+            $return = strlen($request->input["IPN_PID"][0]) . $request->input["IPN_PID"][0] . strlen($request->input["IPN_PNAME"][0]) . $request->input["IPN_PNAME"][0];
+            $return .= strlen($request->input["IPN_DATE"]) . $request->input["IPN_DATE"] . strlen($date_return) . $date_return;
             function ArrayExpand($array)
             {
                 $retval = "";
@@ -86,9 +90,17 @@ class GitAndPaymentController extends Controller
                 $result_hash =  hmac($pass, $return);
                 echo "<EPAYMENT>" . $date_return . "|" . $result_hash . "</EPAYMENT>";
                 /* Begin automated procedures (START YOUR CODE)*/
+                AddProjectAndInvoice::dispatch($request->REFNOEXT);
             } else {
 
-                Mail::to('Mohmmad.m.othman@gmail.com')->send(new SendConf($name));
+                $details = [
+                    'email' => env("MAIL_ADMIN"),
+                    "data" => ["errors" => "Error On Verified ", "code" => "001"],
+                    "view" => "Error",
+                    "subject" => "Pay Error"
+                ];
+                SendEmailsJob::dispatch($details);
+                // Mail::to(env("MAIL_ADMIN"))->send(new SendConf($name));
             }
 
 

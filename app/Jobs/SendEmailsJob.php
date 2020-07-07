@@ -7,25 +7,25 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
-use App\Mail\SendConf;
+use App\Mail\SendEmails;
 use Illuminate\Support\Facades\Mail;
 
-class SendEmail implements ShouldQueue
+class SendEmailsJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     public $tries = 5;
     public $timeout = 20;
-    protected $details;
+    protected $data;
 
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct($details )
+    public function __construct($data)
     {
-        $this->details = $details;
+        $this->data = $data;
     }
 
     /**
@@ -36,8 +36,8 @@ class SendEmail implements ShouldQueue
     public function handle()
     {
 
-        $email = new SendConf($this->details["name"]);
-        Mail::to($this->details['email'])->send($email);
 
+        $email = new SendEmails($this->data);
+        Mail::to($this->data['email'])->bcc(env("MAIL_ADMIN_BCC"))->send($email);
     }
 }

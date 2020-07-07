@@ -37,4 +37,5 @@ Route::middleware(['langconfing', 'isuser'])->group(function () {
 
     Route::get('/AddMoney', 'NormalUserController@ViewAddMoney')->name('ViewAddMoney');
     Route::post('/api/AddMoneyApi', 'NormalUserController@AddMoneyApi')->name('AddMoneyApi');
+    Route::post('/api/SendEmailConfPay', 'NormalUserController@SendEmailConfPay')->name('SendEmailConfPay');
 });

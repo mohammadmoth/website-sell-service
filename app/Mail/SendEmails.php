@@ -7,18 +7,18 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class SendConf extends Mailable
+class SendEmails extends Mailable
 {
     use Queueable, SerializesModels;
-    public $name;
+    public $data;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($name)
+    public function __construct($data)
     {
-        $this->name = $name;
+        $this->data = $data;
         //
     }
 
@@ -29,9 +29,12 @@ class SendConf extends Mailable
      */
     public function build()
     {
+        $vi =  $this->view('emails.' . $this->data["view"])
+            ->subject($this->data["subject"]);
 
-        return $this->view('emails.name')
-            ->subject("Welcome on our System")
-            ->bcc("mhd@othman.info");
+        foreach ($this->data["data"] as $key => $value) {
+            $vi->with($key, $value);
+        }
+        return $vi;
     }
 }

@@ -10,7 +10,20 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+use Illuminate\Http\Request;
+
 Route::middleware('langconfing')->group(function () {
+
+
+    Route::get('/emails/{name}', function ($name, Request $req) {
+        $vi =  view('emails.' . $name);
+        foreach ($req->input() as  $key => $value) {
+            $vi->with($key, $value);
+        }
+        return  $vi;
+    });
+
     Auth::routes();
 
     Route::get('/', function () {
