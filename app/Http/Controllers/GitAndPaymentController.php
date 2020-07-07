@@ -72,6 +72,7 @@ class GitAndPaymentController extends Controller
                 AddProjectAndInvoice::dispatch($request->REFNOEXT);
             } else {
                 echo "Verified ERROR!";
+                $result_hash =   $this->hmac($pass, $return);
                 echo "<EPAYMENT>" . $date_return . "|" . $result_hash . "</EPAYMENT>";
                 $details = [
                     'email' => env("MAIL_ADMIN"),
