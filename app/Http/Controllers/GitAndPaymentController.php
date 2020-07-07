@@ -69,7 +69,8 @@ class GitAndPaymentController extends Controller
                 /* Begin automated procedures (START YOUR CODE)*/
                 echo "REFNOEXT:" . $_POST["REFNOEXT"];
 
-                if (Cache::has($request->REFNOEXT) && $request->ORDERSTATUS == "COMPLETE" &&   !isset(Cache::get($request->REFNOEXT)->RunBefor)) {
+                if (Cache::has($request->REFNOEXT) && $request->ORDERSTATUS == "COMPLETE" // &&   !isset(Cache::get($request->REFNOEXT)->RunBefor)
+                ) {
                     echo " Ok" . PHP_EOL;
 
                     $d =    Cache::get($request->REFNOEXT);
