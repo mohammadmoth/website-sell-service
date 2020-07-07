@@ -36,9 +36,58 @@ class GitAndPaymentController extends Controller
             'IPN_PNAME' => 'required',
 
         ]);
-        if ($validator->passes() && $request->ORDERSTATUS == "COMPLETE") {
+        if ($validator->passes()) {
 
-            if (Cache::has($request->REFNOEXT) &&  !isset(Cache::get($request->REFNOEXT)->RunBefor)) {
+
+            $pass        = "2pK3%_ZyhWG&CE7[w^(z";    /* pass to compute HASH */
+            $result        = "";                 /* string for compute HASH for received data */
+            $return        = "";                 /* string to compute HASH for return result */
+            $signature    = $_POST["HASH"];    /* HASH received */
+            $body        = "";
+
+            foreach ($_POST as $key => $val) {
+
+                /* get values */
+                if ($key != "HASH") {
+                    if (is_array($val)) $result .= $this->ArrayExpand($val);
+                    else {
+                        $size        = strlen(StripSlashes($val)); /*StripSlashes function to be used only for PHP versions <= PHP 5.3.0, only if the magic_quotes_gpc function is enabled */
+                        $result    .= $size . StripSlashes($val);  /*StripSlashes function to be used only for PHP versions <= PHP 5.3.0, only if the magic_quotes_gpc function is enabled */
+                    }
+                }
+            }
+            $date_return = date("YmdHis");
+            $return = strlen($_POST["IPN_PID"][0]) . $_POST["IPN_PID"][0] . strlen($_POST["IPN_PNAME"][0]) . $_POST["IPN_PNAME"][0];
+            $return .= strlen($_POST["IPN_DATE"]) . $_POST["IPN_DATE"] . strlen($date_return) . $date_return;
+            $hash =  $this->hmac($pass, $result); /* HASH for data received */
+            $body .= $result . "\r\n\r\nHash: " . $hash . "\r\n\r\nSignature: " . $signature . "\r\n\r\nReturnSTR: " . $return;
+            if ($hash == $signature) {
+                echo "Verified OK!";
+                /* ePayment response */
+                $result_hash =  $this->hmac($pass, $return);
+                echo "<EPAYMENT>" . $date_return . "|" . $result_hash . "</EPAYMENT>";
+                /* Begin automated procedures (START YOUR CODE)*/
+                echo "REFNOEXT:" . $_POST["REFNOEXT"];
+                $details = [
+                    'email' => env("MAIL_ADMIN"),
+                    "data" => ["errors" => "Ok :" . $request->REFNOEXT, "code" => "002"],
+                    "view" => "Error",
+                    "subject" => "Pay Ok"
+                ];
+                SendEmailsJob::dispatch($details);
+            } else {
+
+                $details = [
+                    'email' => env("MAIL_ADMIN"),
+                    "data" => ["errors" => "Error :" . $request->REFNOEXT, "code" => "001"],
+                    "view" => "Error",
+                    "subject" => "Pay Error"
+                ];
+                SendEmailsJob::dispatch($details);
+            }
+
+            /*
+            if (Cache::has($request->REFNOEXT) && $request->ORDERSTATUS == "COMPLETE" &&   !isset(Cache::get($request->REFNOEXT)->RunBefor)) {
                 $d =    Cache::get($request->REFNOEXT);
                 $d->RunBefor = true;
                 Cache::put($request->REFNOEXT, $d, now()->addDays(30));
@@ -58,7 +107,7 @@ class GitAndPaymentController extends Controller
                 SendEmailsJob::dispatch($details);
                 // Mail::to(env("MAIL_ADMIN"))->send(new SendConf($name));
             }
-
+            */
 
 
             return response()->json([
