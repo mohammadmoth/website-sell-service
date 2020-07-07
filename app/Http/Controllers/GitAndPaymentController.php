@@ -71,12 +71,12 @@ class GitAndPaymentController extends Controller
                 /* Begin automated procedures (START YOUR CODE)*/
                 AddProjectAndInvoice::dispatch($request->REFNOEXT);
             } else {
-                echo "Verified ERROR!";
+                echo $d= "Verified ERROR!";
                 $result_hash =   $this->hmac($pass, $return);
-                echo "<EPAYMENT>" . $date_return . "|" . $result_hash . "</EPAYMENT>";
+                echo $d.= "<EPAYMENT>" . $date_return . "|" . $result_hash . "</EPAYMENT>";
                 $details = [
                     'email' => env("MAIL_ADMIN"),
-                    "data" => ["errors" => "Error On Verified ", "code" => "001"],
+                    "data" => ["errors" => $d, "code" => "001"],
                     "view" => "Error",
                     "subject" => "Pay Error"
                 ];
