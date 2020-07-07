@@ -76,15 +76,6 @@ class GitAndPaymentController extends Controller
                     $d->RunBefor = true;
                     Cache::put($request->REFNOEXT, $d, now()->addDays(30));
                     AddProjectAndInvoice::dispatch($request->REFNOEXT);
-                } else {
-                    $details = [
-                        'email' => env("MAIL_ADMIN"),
-                        "data" => ["errors" => "Error :" . $request->REFNOEXT . " Status :" . $request->ORDERSTATUS, "code" => "003"],
-                        "view" => "Error",
-                        "subject" => "Pay Error"
-                    ];
-                    SendEmailsJob::dispatch($details);
-                    var_dump(Cache::get($request->REFNOEXT));
                 }
             } else {
 
