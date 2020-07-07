@@ -44,7 +44,8 @@ class GitAndPaymentController extends Controller
             $body        = "";
             /* read info received */
             ob_start();
-            while (list($key, $val) = each($_POST)) {
+            foreach($request->all() as $key => $val) {
+           // while (list($key, $val) = each($_POST)) {
                 $$key = $val;
                 /* get values */
                 if ($key != "HASH") {
