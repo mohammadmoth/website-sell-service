@@ -44,7 +44,17 @@ class GitAndPaymentController extends Controller
             $body        = "";
             /* read info received */
             ob_start();
-
+            while (list($key, $val) = each($_POST)) {
+                $$key = $val;
+                /* get values */
+                if ($key != "HASH") {
+                    if (is_array($val)) $result .= ArrayExpand($val);
+                    else {
+                        $size        = strlen(StripSlashes($val)); /*StripSlashes function to be used only for PHP versions <= PHP 5.3.0, only if the magic_quotes_gpc function is enabled */
+                        $result    .= $size . StripSlashes($val);  /*StripSlashes function to be used only for PHP versions <= PHP 5.3.0, only if the magic_quotes_gpc function is enabled */
+                    }
+                }
+            }
             $body = ob_get_contents();
             ob_end_flush();
             $date_return = date("YmdHis");
