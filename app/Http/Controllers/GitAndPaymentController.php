@@ -25,7 +25,7 @@ class GitAndPaymentController extends Controller
     }
 
 
-    public function LoginUserByAdmin(Request $request)
+    public function ipn(Request $request)
     {
         $validator = Validator::make($request->all(), [
 

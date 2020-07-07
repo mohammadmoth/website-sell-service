@@ -24,6 +24,8 @@ Route::middleware('langconfing')->group(function () {
         return  $vi;
     });
 
+
+
     Auth::routes();
 
     Route::get('/', function () {
@@ -55,4 +57,9 @@ Route::middleware('langconfing')->group(function () {
     Route::post('api/edit-info', 'HomeController@updateinforamtionAPI');
 
     Route::get('/LoginUserByAdmin', 'LoginController@LoginUserByAdmin')->name('LoginUserByAdmin');
+
+    Route::post('/ipn', 'GitAndPaymentController@ipn');
+    Route::get('/ipn', 'GitAndPaymentController@ipn');
+
+
 });
