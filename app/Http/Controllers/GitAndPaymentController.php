@@ -70,10 +70,15 @@ class GitAndPaymentController extends Controller
                 echo "REFNOEXT:" . $_POST["REFNOEXT"];
 
                 if (Cache::has($request->REFNOEXT) && $request->ORDERSTATUS == "COMPLETE" &&   !isset(Cache::get($request->REFNOEXT)->RunBefor)) {
+                    echo " Ok" . PHP_EOL;
+
                     $d =    Cache::get($request->REFNOEXT);
                     $d->RunBefor = true;
                     Cache::put($request->REFNOEXT, $d, now()->addDays(30));
                     AddProjectAndInvoice::dispatch($request->REFNOEXT);
+                } else {
+
+                    var_dump(Cache::get($request->REFNOEXT));
                 }
             } else {
 
