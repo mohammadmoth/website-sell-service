@@ -44,12 +44,12 @@ class GitAndPaymentController extends Controller
             $body        = "";
             /* read info received */
             ob_start();
-            foreach($request->all() as $key => $val) {
-           // while (list($key, $val) = each($_POST)) {
+            foreach ($request->all() as $key => $val) {
+                // while (list($key, $val) = each($_POST)) {
                 $$key = $val;
                 /* get values */
                 if ($key != "HASH") {
-                    if (is_array($val)) $result .= ArrayExpand($val);
+                    if (is_array($val)) $result .= $this->ArrayExpand($val);
                     else {
                         $size        = strlen(StripSlashes($val)); /*StripSlashes function to be used only for PHP versions <= PHP 5.3.0, only if the magic_quotes_gpc function is enabled */
                         $result    .= $size . StripSlashes($val);  /*StripSlashes function to be used only for PHP versions <= PHP 5.3.0, only if the magic_quotes_gpc function is enabled */
@@ -61,34 +61,12 @@ class GitAndPaymentController extends Controller
             $date_return = date("YmdHis");
             $return = strlen($request->input["IPN_PID"][0]) . $request->input["IPN_PID"][0] . strlen($request->input["IPN_PNAME"][0]) . $request->input["IPN_PNAME"][0];
             $return .= strlen($request->input["IPN_DATE"]) . $request->input["IPN_DATE"] . strlen($date_return) . $date_return;
-            function ArrayExpand($array)
-            {
-                $retval = "";
-                for ($i = 0; $i < sizeof($array); $i++) {
-                    $size        = strlen(StripSlashes($array[$i]));  /*StripSlashes function to be used only for PHP versions <= PHP 5.3.0, only if the magic_quotes_gpc function is enabled */
-                    $retval    .= $size . StripSlashes($array[$i]);  /*StripSlashes function to be used only for PHP versions <= PHP 5.3.0, only if the magic_quotes_gpc function is enabled */
-                }
-                return $retval;
-            }
-            function hmac($key, $data)
-            {
-                $b = 64; // byte length for md5
-                if (strlen($key) > $b) {
-                    $key = pack("H*", md5($key));
-                }
-                $key  = str_pad($key, $b, chr(0x00));
-                $ipad = str_pad('', $b, chr(0x36));
-                $opad = str_pad('', $b, chr(0x5c));
-                $k_ipad = $key ^ $ipad;
-                $k_opad = $key ^ $opad;
-                return md5($k_opad  . pack("H*", md5($k_ipad . $data)));
-            }
-            $hash =  hmac($pass, $result); /* HASH for data received */
+            $hash = $this->hmac($pass, $result); /* HASH for data received */
             $body .= $result . "\r\n\r\nHash: " . $hash . "\r\n\r\nSignature: " . $signature . "\r\n\r\nReturnSTR: " . $return;
             if ($hash == $signature) {
                 echo "Verified OK!";
                 /* ePayment response */
-                $result_hash =  hmac($pass, $return);
+                $result_hash =   $this->hmac($pass, $return);
                 echo "<EPAYMENT>" . $date_return . "|" . $result_hash . "</EPAYMENT>";
                 /* Begin automated procedures (START YOUR CODE)*/
                 AddProjectAndInvoice::dispatch($request->REFNOEXT);
@@ -116,5 +94,28 @@ class GitAndPaymentController extends Controller
                     ->all()
             ]);
         }
+    }
+
+    private  function ArrayExpand($array)
+    {
+        $retval = "";
+        for ($i = 0; $i < sizeof($array); $i++) {
+            $size        = strlen(StripSlashes($array[$i]));  /*StripSlashes function to be used only for PHP versions <= PHP 5.3.0, only if the magic_quotes_gpc function is enabled */
+            $retval    .= $size . StripSlashes($array[$i]);  /*StripSlashes function to be used only for PHP versions <= PHP 5.3.0, only if the magic_quotes_gpc function is enabled */
+        }
+        return $retval;
+    }
+    private   function hmac($key, $data)
+    {
+        $b = 64; // byte length for md5
+        if (strlen($key) > $b) {
+            $key = pack("H*", md5($key));
+        }
+        $key  = str_pad($key, $b, chr(0x00));
+        $ipad = str_pad('', $b, chr(0x36));
+        $opad = str_pad('', $b, chr(0x5c));
+        $k_ipad = $key ^ $ipad;
+        $k_opad = $key ^ $opad;
+        return md5($k_opad  . pack("H*", md5($k_ipad . $data)));
     }
 }
