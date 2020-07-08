@@ -8,6 +8,11 @@ getLocale() =="ar")dir="rtl" @endif >
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Freelancer working online">
     <meta name="author" content="it-softsolutions.com">
+    <meta name="keywords" content="freelancer, work online ,website , support, online support,">
+    <meta property="og:title" content="High tech Freelanser" />
+    <meta property="og:description" content="Freelancer working online" />
+    <meta property="og:image"
+        content="{{env("APP_URL")}}/img/web.jpg" />
 
     <title>High tech Freelanser</title>
 

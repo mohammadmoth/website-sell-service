@@ -45,7 +45,7 @@
 
                     <div class="form-group terms-conditions">
                       <input id="register-agree" name="registerAgree" lang="ar" type="checkbox" required value="1" data-msg="Your agreement is required" class="checkbox-template">
-                      <label lang="ar" for="register-agree">Agree the terms and policy</label>
+                      <label lang="ar" for="register-agree">Agree the <a href="{{route("FeesTOT")}}">terms</a> and <a href="{{route("PrivacyPolicy")}}">policy</a> </label>
                     </div>
                     <div class="form-group">
                       <button id="regidter" type="submit" name="registerSubmit" class="btn btn-primary">Register</button>
