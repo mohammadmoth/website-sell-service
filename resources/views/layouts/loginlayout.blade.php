@@ -5,12 +5,15 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="description" content="Freelancer working online">
-        <meta name="author" content="it-softsolutions.com">
         <title>High tech Freelanser</title>
-        <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="robots" content="all,follow">
+        <meta name="description" content="Freelancer working online">
+        <meta name="author" content="it-softsolutions.com">
+        <meta name="keywords" content="freelancer, work online ,website , support, online support,">
+        <meta property="og:title" content="High tech Freelanser" />
+        <meta property="og:description" content="Freelancer working online" />
+        <meta property="og:image" content="{{env("APP_URL")}}/img/web.jpg" />
         <!-- Bootstrap CSS-->
         @if(app()->getLocale() =="ar")
         <link rel="stylesheet" href="https://cdn.rtlcss.com/bootstrap/v4.0.0/css/bootstrap.min.css"
