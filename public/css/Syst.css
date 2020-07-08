@@ -399,7 +399,23 @@ header.masthead p {
 
 
 .section-heading {
+    /* margin-top: 60px; */
     margin-bottom: 60px;
+    /* color: blue; */
+}
+
+.PPd {
+    margin-top: 60px;
+
+    color: blue;
+}
+.h3x {
+    margin-top: 60px;
+
+    color: blue;
+}
+.h4x {
+    text-align: justify;
 }
 
 .line-shape-white,

@@ -210,7 +210,7 @@
                             <!-- Navbar Header-->
                             <div class="navbar-header">
                                 <!-- Navbar Brand -->
-                                <a href="index.html" class="navbar-brand">
+                                <a href="#" class="navbar-brand">
                                     <div class="brand-text brand-big">
                                         <span> Hi-
                                         </span><strong>Freelancer</strong>

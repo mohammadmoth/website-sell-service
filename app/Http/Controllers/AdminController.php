@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Auth;
 use App\Http\Controllers\Auth\Auth as AuthAuth;
+use App\Jobs\SendEmailsJob;
 use App\Project;
 use App\User;
 use Illuminate\Support\Facades\Crypt;
@@ -253,8 +254,18 @@ class AdminController extends Controller
             if ($validator->passes()) {
 
                 $project = Project::where("id", $request->id)->first();
+                if ($project->freelancer_id <= 0) {
+                    $details = [
+                        'email' => User::where("id", $project->users_id)->first()->email,
+                        "data" => ["projectname" => $project->name],
+                        "view" => "ProjectHasBeenImprovement",
+                        "subject" => "Project Has Been Improvement"
+                    ];
+                    SendEmailsJob::dispatch($details);
+                }
                 $project->freelancer_id = $request->freelancer_id;
                 $project->save();
+
                 return response()->json([
                     'error' => 0,
 
@@ -268,7 +279,7 @@ class AdminController extends Controller
             }
         } catch (\Throwable $th) {
             return response()->json([
-                "data" => ["line: $th->getLine(), type: '$th->getMessage()'"]
+                "data" => ["line: " . $th->getLine() . ", type: '" . $th->getMessage() . "'"]
 
             ], 400);
         }

@@ -30,7 +30,7 @@ Route::middleware('langconfing')->group(function () {
 
     Route::get('/', function () {
         return view('welcome');
-    });
+    })->name("/");
 
 
 
@@ -59,7 +59,12 @@ Route::middleware('langconfing')->group(function () {
     Route::get('/LoginUserByAdmin', 'LoginController@LoginUserByAdmin')->name('LoginUserByAdmin');
 
     Route::post('/api/ipn', 'GitAndPaymentController@ipn');
-  //  Route::get('/api/ipn', 'GitAndPaymentController@ipn');
+    //  Route::get('/api/ipn', 'GitAndPaymentController@ipn');
 
-
+    Route::get('/PrivacyPolicy', function () {
+        return view("PrivacyPolicy");
+    })->name('PrivacyPolicy');
+    Route::get('/FeesTOT', function () {
+        return view("FeesTOT");
+    })->name('FeesTOT');
 });

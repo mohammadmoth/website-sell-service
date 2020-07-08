@@ -247,7 +247,7 @@ class NormalUserController extends Controller
             }
             $user_Touser = User::where("id",  $project->freelancer_id)->first();
             $user_Touser->money += $cost;
-            $user->money -= $cost;
+
 
 
             $transfers = new Transfers();
