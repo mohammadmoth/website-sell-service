@@ -168,11 +168,11 @@ getLocale() =="ar")dir="rtl" @endif >
                         If you choose to award the project, and the High Tech Freelancer accepts, we charge you a small
                         project fee relative to the value of the selected bid, as an introduction fee.
                         The cost and how this fee is charged depends on the type of project.
-                        For fixed price projects, a fee of 3% or $3.00 USD (whichever is greater) is levied at the time
+                        For fixed price projects, a fee of 10% to 25% or $20.00 USD (whichever is greater) is levied at the time
                         a project that has been awarded by you has been accepted by each High Tech Freelancer you award.
                         If you subsequently pay the High Tech Freelancer more than the original bid amount we will also
                         charge the project fee on any overage payments.
-                        For hourly projects, a fee of 3% is levied on each payment that you make to the High Tech
+                        For hourly projects, a fee of 10% to 25%  is levied on each payment that you make to the High Tech
                         Freelancer.
                         You can cancel the project exclusively by contacting us. You can only request a refund with our
                         approval.
@@ -200,7 +200,7 @@ getLocale() =="ar")dir="rtl" @endif >
                     <h3 class="section-heading h3x">0% Fees Promotion</h3>
                     <h4 class="h4x">High Tech Freelancer project commissions charged for High Tech Freelancers who refer
                         new employers that do not have an existing account on High Tech Freelancer.com and who join and
-                        create a new account, will be reduced from 10% to 0%, for all future projects performed by the
+                        create a new account, will be reduced from 25% UP 0%, for all future projects performed by the
                         referring High Tech Freelancer for the referred employer.
                         This is subject to the following conditions:<br>
                         <div style="text-align: left;"> • For the avoidance of doubt, the reduced High Tech Freelancer
@@ -222,7 +222,7 @@ getLocale() =="ar")dir="rtl" @endif >
                             Freelancer.com from which a payment was made within the 6 months immediately prior to
                             creating the new account.</div><br>
                         <div style="text-align: left;"> • All other elements of the Fees and Charges component of the
-                            Additional Terms continue to apply - see https://www.Hi-Freelancer.com/Fess.</div><br>
+                            Additional Terms continue to apply - see https://www.Hi-Freelancer.com/FessTOT.</div><br>
                         <div style="text-align: left;"> • High Tech Freelancer may require that both parties fill in and
                             complete their profiles and/or pass identity checks before payments are released.</div><br>
                         <div style="text-align: left;"> • High Tech Freelancer may require that the details for any
