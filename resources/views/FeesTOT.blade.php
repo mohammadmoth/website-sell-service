@@ -11,8 +11,7 @@ getLocale() =="ar")dir="rtl" @endif >
     <meta name="keywords" content="freelancer, work online ,website , support, online support,">
     <meta property="og:title" content="High tech Freelanser" />
     <meta property="og:description" content="Freelancer working online" />
-    <meta property="og:image"
-        content="{{env("APP_URL")}}/img/web.jpg" />
+    <meta property="og:image" content="{{env("APP_URL")}}/img/web.jpg" />
 
     <title>High tech Freelanser</title>
 
@@ -168,11 +167,13 @@ getLocale() =="ar")dir="rtl" @endif >
                         If you choose to award the project, and the High Tech Freelancer accepts, we charge you a small
                         project fee relative to the value of the selected bid, as an introduction fee.
                         The cost and how this fee is charged depends on the type of project.
-                        For fixed price projects, a fee of 10% to 25% or $20.00 USD (whichever is greater) is levied at the time
+                        For fixed price projects, a fee of 10% to 25% or $20.00 USD (whichever is greater) is levied at
+                        the time
                         a project that has been awarded by you has been accepted by each High Tech Freelancer you award.
                         If you subsequently pay the High Tech Freelancer more than the original bid amount we will also
                         charge the project fee on any overage payments.
-                        For hourly projects, a fee of 10% to 25%  is levied on each payment that you make to the High Tech
+                        For hourly projects, a fee of 10% to 25% is levied on each payment that you make to the High
+                        Tech
                         Freelancer.
                         You can cancel the project exclusively by contacting us. You can only request a refund with our
                         approval.
@@ -284,7 +285,7 @@ getLocale() =="ar")dir="rtl" @endif >
                     <h4 class="h4x"> TRANSACTION FEES INCURRED FOR USING CREDIT CARD, PAYPAL OR SKRILL.* $0.30 USD +
                         2.3%<br>
                         LOCAL BANK DEPOSIT FREE<br>
-                        INTERNATIONAL WIRE TRANSFER $15.00 USD<br>
+                        INTERNATIONAL WIRE TRANSFER 10%<br>
                         *Australian users incur $0.30AUD + 0.99% for Credit/Debit card transactions.
                     </h4>
                     <h3 class="section-heading h3x">Arbitration Fees</h3>
@@ -315,12 +316,12 @@ getLocale() =="ar")dir="rtl" @endif >
                                 </tr>
                                 <tr>
                                     <td>PAYPAL </td>
-                                    <td>Free *Paypal Fees </td>
+                                    <td>2% + Paypal Fees </td>
 
                                 </tr>
                                 <tr>
                                     <td>PAYONEER DEBIT CARD </td>
-                                    <td>Free *PAYONEER Fees</td>
+                                    <td>2%+PAYONEER Fees</td>
 
                                 </tr>
                                 <tr>
