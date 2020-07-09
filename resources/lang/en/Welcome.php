@@ -3,7 +3,7 @@
 return [
 
     'Welcome1' => 'powerful servers. Active 99.9%',
-    'Welcome2' => 'The most accurate and fastest COplayers we have.
+    'Welcome2' => 'The most accurate and fastest Freelances we have.
 The most powerful servers. Active 99.9%',
 
     'about' => 'About',
@@ -13,7 +13,7 @@ The most powerful servers. Active 99.9%',
     'Hello' => 'Hello',
     'FindOutMore'=>'Find Out More',
     'got'=>'We \'ve got what you need!',
-    'Desc'=>'We offerd Manger Your Projects And BL LBL LB L',
+    'Desc'=>'We offer to manage your project online 24/7 H  ',
     'Get_Started' => 'Get Started!',
     'Your_Service'=>'We Can Do All',
     'ActiveServe'=>'Save Your Time',
@@ -21,9 +21,9 @@ The most powerful servers. Active 99.9%',
     'Easy_for_beginners'=>'Easy for beginners',
     'Very_easy'=>'Very easy to add setups!',
     'Up_to_Date'=>'Up to Date',
-    'We_sought'=>'We sought to develop Coplayers!',
+    'We_sought'=>'We sought to develop Freelancer!',
     'Made_Love'=>'Made with Love',
-    'make_happiness'=>'We make happiness for you with a fast and integrated work of Coplayers!',
+    'make_happiness'=>'We make happiness for you with a fast and integrated work of Freelancer!',
     'Pricing_Plan'=>' Pricing Plan',
     'Select_Plan'=>'Select Plan',
     /////Starter Plan

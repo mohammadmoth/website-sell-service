@@ -443,10 +443,10 @@ getLocale() =="ar")dir="rtl" @endif >
             </div>
             <div class="row">
                 <div class="col-lg-4 ml-auto text-center">
-                    <i class=" fa-3x mb-3 sr-contact"><a href="https://wa.me/0037379752939"><img
+                    <i class=" fa-3x mb-3 sr-contact"><a href="https://wa.me/00"><img
                                 src="https://static.adweek.com/adweek.com-prod/wp-content/uploads/sites/2/2015/09/WhatsAppIcon640x480.jpg"
                                 alt="Smiley face" height="50" width="70"></i>
-                    <p>+37379752939</p></a>
+                    <p>+</p></a>
                 </div>
                 <div class="col-lg-4 mr-auto text-center">
                     <i class="fa fa-envelope-o fa-3x mb-3 sr-contact"></i>
