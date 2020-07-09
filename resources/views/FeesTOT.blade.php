@@ -321,7 +321,7 @@ getLocale() =="ar")dir="rtl" @endif >
                                 </tr>
                                 <tr>
                                     <td>PAYONEER DEBIT CARD </td>
-                                    <td>2%+PAYONEER Fees</td>
+                                    <td>2% + PAYONEER Fees</td>
 
                                 </tr>
                                 <tr>
