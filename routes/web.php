@@ -11,7 +11,9 @@
 |
 */
 
+use App\Items;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 Route::middleware('langconfing')->group(function () {
 
@@ -29,7 +31,24 @@ Route::middleware('langconfing')->group(function () {
     Auth::routes();
 
     Route::get('/', function () {
-        return view('welcome');
+        $savedata = [];
+        if (!Cache::has("DataOfWelcomeUserItems")) {
+
+            $items = Items::get();
+            foreach ($items as $item) {
+                $item->json = json_decode($item->json);
+                if (isset($item->json->show) && $item->json->show)
+                    $savedata[] = $item;
+            }
+            $savedata = array_chunk($savedata, 3);
+            Cache::put("DataOfWelcomeUserItems", $savedata, now()->addDay());
+        } else {
+            $savedata = Cache::get('DataOfWelcomeUserItems');
+        }
+
+
+
+        return view('welcome')->with("Arrayplans", $savedata);
     })->name("/");
 
 
