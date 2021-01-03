@@ -140,9 +140,9 @@ class GitAndPaymentController extends Controller
         $event = null;
 
         try {
-
+            $payload = @file_get_contents('php://input');
             // Make sure the event is coming from Stripe by checking the signature header
-            $event = \Stripe\Webhook::constructEvent($input, $_SERVER['HTTP_STRIPE_SIGNATURE'], env('stripe_webhook_secret'));
+            $event = \Stripe\Webhook::constructEvent($payload, $_SERVER['HTTP_STRIPE_SIGNATURE'], env('stripe_webhook_secret_' . env("stripe_payments_mode")));
         } catch (Exception $e) {
             return response()->json([
 
@@ -151,7 +151,6 @@ class GitAndPaymentController extends Controller
             ], 403);
         }
 
-        $details = '';
 
         $type = $event['type'];
         $object = $event['data']['object'];

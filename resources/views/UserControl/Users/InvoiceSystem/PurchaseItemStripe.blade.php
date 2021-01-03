@@ -81,7 +81,7 @@
 <script>
     function ShowStripeBuy(idSession) {
     debugger;
-    var stripe = Stripe({{env("stripe_payments_secret_".env("stripe_payments_mode")) }});
+    var stripe = Stripe('{{env("stripe_payments_publishable_".env("stripe_payments_mode")) }}');
     stripe.redirectToCheckout({ sessionId: idSession });
 
   // You might want to display UI to notify the user and start re-discovering readers
