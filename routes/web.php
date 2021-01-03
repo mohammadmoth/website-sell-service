@@ -78,7 +78,7 @@ Route::middleware('langconfing')->group(function () {
     Route::get('/LoginUserByAdmin', 'LoginController@LoginUserByAdmin')->name('LoginUserByAdmin');
 
     Route::post('/api/ipn', 'GitAndPaymentController@ipn');
-    Route::post("/api/hookstripe", 'GitAndPaymentController@WebHooksStrip')
+    Route::post("/api/hookstripe", 'GitAndPaymentController@WebHooksStrip');
     //  Route::get('/api/ipn', 'GitAndPaymentController@ipn');
 
     Route::get('/PrivacyPolicy', function () {
