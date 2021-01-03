@@ -16,7 +16,8 @@ use App\User;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Mail;
 
-class AddProjectAndInvoice implements ShouldQueue
+class AddProjectAndInvoice implements
+    ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
@@ -42,12 +43,12 @@ class AddProjectAndInvoice implements ShouldQueue
     public function handle()
     {
 
-        if (Cache::has($this->key) ) {
+        if (Cache::has($this->key)) {
 
 
-            $data =   Cache::get($this->key);
-            $user = User::where("id", $data->userid)->first();
-            $items = Items::where("id", $data->itemid)->first();
+            $data =   Cache::get($this->key, []);
+            $user = User::where("id", $data[0])->first();
+            $items = Items::where("id", $data[1])->first();
             $project = new Project(); //   "users_id", 'name', 'json',  'filespath', "isfinsh", "cost", "freelancer_id"
 
 

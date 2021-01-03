@@ -11,6 +11,7 @@ use App\Jobs\SendEmailsJob;
 use App\Mail\SendConf;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
@@ -97,7 +98,8 @@ class GitAndPaymentController extends Controller
                 'error' => 0
             ]);
         } else {
-            error: return response()->json([
+            error:
+            return response()->json([
                 'error' => 1,
                 'data' => $validator->errors()
                     ->all()
@@ -126,5 +128,46 @@ class GitAndPaymentController extends Controller
         $k_ipad = $key ^ $ipad;
         $k_opad = $key ^ $opad;
         return md5($k_opad  . pack("H*", md5($k_ipad . $data)));
+    }
+
+
+
+
+    public function WebHooksStrip(Request $request)
+    {
+
+
+        $event = null;
+
+        try {
+
+            // Make sure the event is coming from Stripe by checking the signature header
+            $event = \Stripe\Webhook::constructEvent($input, $_SERVER['HTTP_STRIPE_SIGNATURE'], env('stripe_webhook_secret'));
+        } catch (Exception $e) {
+            return response()->json([
+
+                'error' => $e->getMessage()
+
+            ], 403);
+        }
+
+        $details = '';
+
+        $type = $event['type'];
+        $object = $event['data']['object'];
+
+        if ($type == 'checkout.session.completed') {
+
+
+            AddProjectAndInvoice::dispatch($object["client_reference_id"]);
+
+            Log::info($event);
+            Log::info('🔔  Checkout Session was completed!');
+        }
+        return response()->json([
+
+            'status' =>  'success'
+
+        ]);
     }
 }

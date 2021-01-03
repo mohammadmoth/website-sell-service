@@ -76,14 +76,22 @@
 @section('script')
 
 </script>
-<script src="https://secure.avangate.com/checkout/client/twoCoInlineCart.js" async> </script>
-
-
+<script src="https://js.stripe.com/v3/"></script>
 
 <script>
-    function PURCHASE (id , name)
-{
+    function ShowStripeBuy(idSession) {
+    debugger;
+    var stripe = Stripe({{env("stripe_payments_secret_".env("stripe_payments_mode")) }});
+    stripe.redirectToCheckout({ sessionId: idSession });
 
+  // You might want to display UI to notify the user and start re-discovering readers
+
+}
+
+
+function PURCHASE (id , name)
+{
+    debugger;
     var bntname = $('#PURCHASE');
         bntname.prop("disabled",true);
     $.confirm({
@@ -93,17 +101,7 @@
             confirm: { btnClass: 'btn-blue', action: function () {
                                 var data =  SendDataforapi ('{{route("purchaseapi")}}','id='+id , function(msg)
                                 {
-
-/*SendEmailConfPay
-
-
-
-
-*/
                                     var mess = "";
-                                  //      console.log(dataall);
-
-
                                     if ( msg.error== 1){
                                         dataall = msg.data;
                                                 dataall.forEach(function(element) {
@@ -111,8 +109,6 @@
                                             $.alert({
                                         title: 'An error!',
                                         content:mess,
-
-
                                         typeAnimated: true,
                                         buttons: {
                                         tryAgain: {
@@ -120,14 +116,14 @@
                                             text: 'Ok',
                                             btnClass: 'btn',
                                             action: function(){
+
+
                                                 bntname.prop("disabled",false);
 
                                             }
                                         }
-
                                         }
                                         });
-
                                     }
                                     else if ( msg.error>= 2){
                                         var setOrderExternalRef =msg.ref;
@@ -140,64 +136,9 @@
                                             confirm:
                                              function(){
 
-                                                    (function (document, src, libName, config) {
-                                                 /*       var script             = document.createElement('script');
-                                                        script.src             = src;
-                                                        script.async           = true;
-                                                        var firstScriptElement = document.getElementsByTagName('script')[0];*/
 
-                                                            for (var namespace in config) {
-                                                                if (config.hasOwnProperty(namespace)) {
-                                                                    window[libName].setup.setConfig(namespace, config[namespace]);
-                                                                }
-                                                            }
-
-                                                            window[libName].register();
-                                                            window[libName].cart.setOrderExternalRef(msg.data.ref);
-                                                            TwoCoInlineCart.products.add({ code: msg.data.id2checkout,quantity:1});
-
-                                                           /* TwoCoInlineCart.products.addMany([{
-                                                                                    type: 'PRODUCT',
-                                                                                    name: 'product 1',
-                                                                                    price: 10,
-                                                                                    tangible: true,
-                                                                                    quantity: 1,
-                                                                                    },
-                                                                                    {
-                                                                                        type: 'PRODUCT',
-                                                                                        name: 'product 2',
-                                                                                        price: 30,
-                                                                                        tangible: true,
-                                                                                        quantity: 1,
-                                                                                    } ] );*/
-                                                            TwoCoInlineCart.cart.checkout();
-                                                            TwoCoInlineCart.events.subscribe('payment:finalized', function () {
-                                                                SendDataforapi('{{route("SendEmailConfPay")}}','id='+msg.data.ref ,function(){},function(){} );
-                                                                $.alert({
-                                                                title: 'Thanks',
-                                                                content:'Thank You For Pay , We Will Send Emails informaion',
-                                                            typeAnimated: true,
-                                                            buttons: {
-                                                            tryAgain: {
-                                                                rtl: true,
-                                                                text: 'Ok',
-                                                                btnClass: 'btn',
-                                                                action: function(){
-                                                                   // bntname.prop("disabled",false);
-                                                                    window.location.href = '{{route("Invoices")}}'
-                                                                }
-                                                            }
-                                                         }
-                                                              });
-                                                            });
-
-
-
-                                                       // firstScriptElement.parentNode.insertBefore(script, firstScriptElement);
-                                                    })(document, 'https://secure.avangate.com/checkout/client/twoCoInlineCart.js',
-                                                    'TwoCoInlineCart',{"app":{"merchant":"250272971171","iframeLoad":"checkout"}
-                                                    ,"cart":{"host":"https:\/\/secure.2checkout.com","customization":"inline"}});
-                                                    bntname.prop("disabled",false);
+                                                ShowStripeBuy(msg.data.sessionId);
+                                                bntname.prop("disabled",false);
 
                                             } , cancel: function () {
                                                 bntname.prop("disabled",false);
@@ -280,8 +221,6 @@ function SendDataforapi (url ,datasend  , fucntionsSaccsc , errorx)
 			});
 
 }
-//TODO تحقق من رصيد
-//TODO في حال عدم وجود رصيد يقوم بدفع
-//TODO في حال وجود رصيد يقوم بقبول الطلب
+
 
 @endsection

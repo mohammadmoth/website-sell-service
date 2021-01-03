@@ -13,6 +13,7 @@ use App\Transfers;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Validator;
 use stdClass;
 
@@ -54,7 +55,8 @@ class NormalUserController extends Controller
             foreach ($files as $file) {
 
                 $filename = $file->getClientOriginalName();
-                ChangeName: if (!empty($filesPath[$filename])) {
+                ChangeName:
+                if (!empty($filesPath[$filename])) {
 
 
                     $filename = rand(0, 1000) . "_" . $filename;
@@ -292,7 +294,7 @@ class NormalUserController extends Controller
 
                 return redirect("/404");
             }
-            return view("UserControl.Users.InvoiceSystem.PurchaseItem")->with("item", $item);
+            return view("UserControl.Users.InvoiceSystem.PurchaseItemStripe")->with("item", $item);
         } else {
             return redirect("/404");
         }
@@ -413,7 +415,8 @@ class NormalUserController extends Controller
                     'error' => 0
                 ]);
             } else {
-                newnumber: $std = new stdClass();
+                newnumber:
+                $std = new stdClass();
                 $std->id = uniqid("pay_2checkout_");
                 if (Cache::has($std->id))
                     goto newnumber;
@@ -429,9 +432,32 @@ class NormalUserController extends Controller
 
                     ], 400);
                 }
+                \Stripe\Stripe::setApiKey(env("stripe_payments_secret_test"));
+                $newKeyForLooping = uniqid("ID_ITEM_");
+                Cache::put($newKeyForLooping, [Auth::user()->id, $items->id], now()->addDays(15));
+                $session = \Stripe\Checkout\Session::create([
+                    'payment_method_types' => ['card'],
+                    'line_items' => [[
+                        'price_data' => [
+                            'currency' => 'usd',
+                            'product_data' => [
+                                'name' => $items->name,
+
+                            ],
+                            'unit_amount' => $items->cost * 100,
+                        ],
+                        'quantity' => 1,
+                    ]],
+                    'mode' => 'payment',
+                    'success_url' => URL::to('showallprojects'),
+                    'cancel_url' => URL::to('/home'),
+                    'customer_email' => Auth::user()->email,
+                    'client_reference_id' => $newKeyForLooping
+                ]);
+
                 return response()->json([
                     'error' => 2,
-                    'data' => ["id2checkout" => $items->json->idpay, "ref" => $std->id]
+                    'data' => ["id2checkout" => $items->json->idpay, "ref" => $std->id, "sessionId" => $session->id]
                 ]);
             }
         } else {
