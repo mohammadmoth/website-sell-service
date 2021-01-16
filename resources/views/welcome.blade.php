@@ -274,15 +274,15 @@ getLocale() =="ar")dir="rtl" @endif >
             </div>
             <div class="row">
                 <div class="col-lg-4 ml-auto text-center">
-                    <i class=" fa-3x mb-3 sr-contact"><a href="https://wa.me/00"><img
-                                src="https://static.adweek.com/adweek.com-prod/wp-content/uploads/sites/2/2015/09/WhatsAppIcon640x480.jpg"
-                                alt="Smiley face" height="50" width="70"></i>
-                    <p>+</p></a>
+                    <i class=" fa-3x mb-3 sr-contact"><a href="#"><img
+                                src="/img/Vipps-Logo.wine.svg"
+                                alt="Smiley face" height="100" width="250"></i>
+                    <p>+4798454420</p></a>
                 </div>
-                <div class="col-lg-4 mr-auto text-center">
+                <div class="col-lg-4 mr-auto text-center" style="margin-top: 30px;">
                     <i class="fa fa-envelope-o fa-3x mb-3 sr-contact"></i>
                     <p>
-                        <a href="mailto:hi-freelancer.com">CEO@it-softsolutions.com</a>
+                        <a href="mailto:CEO@it-softsolutions.com">CEO@it-softsolutions.com</a>
                     </p>
                 </div>
             </div>
